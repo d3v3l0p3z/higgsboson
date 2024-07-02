@@ -1,8 +1,8 @@
 .hggs-label {
   font-family: var(--label-font-family, var(--hggs-font-family-default));
-  font-weight: var(--label-font-weight, var(--hggs-font-weight-default));
-  font-size: var(--label-font-size, var(--hggs-font-size-lg-default));
-  color: var(--label-color, var(--hggs-color-secondary-default));
+  font-weight: var(--label-font-weight, var(--hggs-font-weight-md-default));
+  font-size: var(--label-font-size, var(--hggs-font-size-sm-default));
+  color: var(--label-color, var(--hggs-color-default));
 
   &:focus,
   &.hggs-label--focus {

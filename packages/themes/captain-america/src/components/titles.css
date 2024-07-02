@@ -16,18 +16,18 @@
   --title-h2-margin: var(--hggs-space-vertical-md) 0 var(--hggs-space-vertical) 0;
   --title-h3-font-family: var(--title-font-family);
   --title-h3-font-size: var(--hggs-font-size-tera);
-  --title-h3-font-weight: var(--hggs-font-weight-xl);
+  --title-h3-font-weight: var(--hggs-font-weight-md);
   --title-h3-margin: var(--hggs-space-vertical) 0 var(--hggs-space-vertical-sm) 0;
   --title-h4-font-family: var(--title-font-family);
   --title-h4-font-size: var(--hggs-font-size-mega);
-  --title-h4-font-weight: var(--hggs-font-weight-xl);
+  --title-h4-font-weight: var(--hggs-font-weight-md);
   --title-h4-margin: var(--hggs-space-vertical) 0 var(--hggs-space-vertical-sm) 0;
   --title-h5-font-family: var(--title-font-family);
   --title-h5-font-size: var(--hggs-font-size-pico);
-  --title-h5-font-weight: var(--hggs-font-weight-xl);
+  --title-h5-font-weight: var(--hggs-font-weight-md);
   --title-h5-margin: var(--hggs-space-vertical-sm) 0 var(--hggs-space-vertical-sm) 0;
   --title-h6-font-family: var(--title-font-family);
   --title-h6-font-size: var(--hggs-font-size-big);
-  --title-h6-font-weight: var(--hggs-font-weight-xl);
+  --title-h6-font-weight: var(--hggs-font-weight-md);
   --title-h6-margin: var(--hggs-space-vertical-sm) 0 var(--hggs-space-vertical-sm) 0;
 }

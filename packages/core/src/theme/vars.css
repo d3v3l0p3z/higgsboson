@@ -212,19 +212,19 @@
   --hggs-icon-size-micro-default: calc(var(--hggs-icon-size-small-default) / 1.3);
   --hggs-icon-size-small-default: calc(var(--hggs-icon-size-default) / 1.3);
   --hggs-icon-size-default: calc(var(--hggs-space-default) / 1.3);
-  --hggs-icon-check-default: url("./default-theme/assets/icons/check.svg");
-  --hggs-icon-chevron-down-default: url("./default-theme/assets/icons/chevron-down.svg");
-  --hggs-icon-close-default: url("./default-theme/assets/icons/close.svg");
-  --hggs-icon-edit-default: url("./default-theme/assets/icons/pencil.svg");
-  --hggs-icon-hamburger-menu-default: url("./default-theme/assets/icons/hamburger-menu.svg");
-  --hggs-icon-log-out-default: url("./default-theme/assets/icons/log-out.svg");
-  --hggs-icon-plus-default: url("./default-theme/assets/icons/plus.svg");
-  --hggs-icon-question-default: url("./default-theme/assets/icons/question.svg");
-  --hggs-icon-user-default: url("./default-theme/assets/icons/user.svg");
-  --hggs-icon-pending-default: url("./default-theme/assets/icons/pending.svg");
+  --hggs-icon-check-default: url("./theme/assets/icons/check.svg");
+  --hggs-icon-chevron-down-default: url("./theme/assets/icons/chevron-down.svg");
+  --hggs-icon-close-default: url("./theme/assets/icons/close.svg");
+  --hggs-icon-edit-default: url("./theme/assets/icons/pencil.svg");
+  --hggs-icon-hamburger-menu-default: url("./theme/assets/icons/hamburger-menu.svg");
+  --hggs-icon-log-out-default: url("./theme/assets/icons/log-out.svg");
+  --hggs-icon-plus-default: url("./theme/assets/icons/plus.svg");
+  --hggs-icon-question-default: url("./theme/assets/icons/question.svg");
+  --hggs-icon-user-default: url("./theme/assets/icons/user.svg");
+  --hggs-icon-pending-default: url("./theme/assets/icons/pending.svg");
 
   /* LOGO */
-  --hggs-logo-default: url("./assets/svg/logo-light.svg");
+  --hggs-logo-default: url("./theme/assets/svg/logo-light.svg");
 }
 
 /* DARK MODE */
@@ -285,6 +285,6 @@
     --hggs-border-color-default: var(--hggs-color-quaternary-default);
 
     /* LOGO */
-    --hggs-logo-default: url("./assets/svg/logo-dark.svg");
+    --hggs-logo-default: url("./theme/assets/svg/logo-dark.svg");
   }
 }

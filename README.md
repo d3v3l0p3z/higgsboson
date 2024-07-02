@@ -94,7 +94,7 @@ Higgsboson
       ├─ core
       │   ├─ src
       │     ├─ components
-      │     ├─ default-theme
+      │     ├─ theme
       │
       ├─ themes
       │  ├─ captain-america
@@ -110,7 +110,7 @@ Higssboson has different packages that has their own workspace. Those packages a
 
 #### Core
 
-Core package contains the core library and the `default-theme`. Building the core package you will use Higgsboson with the default theme.
+Core package contains the core library and the default `theme`. Building the core package you will use Higgsboson with the default theme.
 
 ##### Core folder file structure
 
@@ -118,9 +118,9 @@ Core package contains the core library and the `default-theme`. Building the cor
 ├─ core
     ├─ src
        ├─ components
-       ├─ default-theme
+       ├─ theme
            ├─ assets
-           ├─ default.css
+           ├─ vars.css
            ├─ index.css
            ├─ resets.css
 ```
@@ -131,11 +131,11 @@ Core package contains the core library and the `default-theme`. Building the cor
 
 Folder to allocate different kind of assets as images, svgs, fonts, icons etc to the default theme.
 
-###### default.css
+###### vars.css
 
-Theme default has variables as fallback to each `core-component-tokens` to each core component.
+The default theme has variables as fallback to each `core-component-tokens` to each core component.
 
-Higgsboson themes just works with css standard custom variables but we would like to calls this entire concept `default tokens`.
+Higgsboson themes just works with css standard custom variables but we would like to call this entire concept `core-components-tokens`.
 
 ```css
 --theme-token-a-default: #FFFFFF;
@@ -146,7 +146,7 @@ Higgsboson themes just works with css standard custom variables but we would lik
 --theme-token-n-default: 1px solid var(--theme-token-a);
 ```
 
-**default tokens convention name**
+**default core components tokens convention name**
 
 > [!WARNING]
 > Take care here, in the same way that I will explain that for each `theme tokens` you can use the naming convention that you want, in this case, you must follow the existing naming convention.

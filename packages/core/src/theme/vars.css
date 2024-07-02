@@ -224,7 +224,7 @@
   --hggs-icon-pending-default: url("./theme/assets/icons/pending.svg");
 
   /* LOGO */
-  --hggs-logo-default: url("./theme/assets/svg/logo-light.svg");
+  --hggs-logo-default: url("./theme/assets/svg/hggs-theme-default-logo-light.svg");
 }
 
 /* DARK MODE */
@@ -285,6 +285,6 @@
     --hggs-border-color-default: var(--hggs-color-quaternary-default);
 
     /* LOGO */
-    --hggs-logo-default: url("./theme/assets/svg/logo-dark.svg");
+    --hggs-logo-default: url("./theme/assets/svg/hggs-theme-default-logo-dark.svg");
   }
 }

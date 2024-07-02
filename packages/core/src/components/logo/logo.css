@@ -4,14 +4,6 @@
   background: var(--logo-url, var(--hggs-logo-default)) no-repeat;
   background-size: cover;
 
-  &.hggs-logo--white {
-    background: var(--logo-url-light, var(--hggs-logo-light-default)) no-repeat;
-  }
-
-  &.hggs-logo--black {
-    background: var(--logo-url-dark, var(--hggs-logo-dark-default)) no-repeat;
-  }
-
   &.hggs-logo--hggs-color-primary {
     fill: var(--icon-color-primary, --icon-color-primary-default);
   }

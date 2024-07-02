@@ -477,6 +477,9 @@
   /* LAYERS */
   --hggs-layer-0: 1;
   --hggs-layer-10: 10;
+
+  /* LOGO */
+  --hggs-logo: url("./assets/svg/hggs-theme-caramel-logo-light.svg");
 }
 
 /* DARK MODE */
@@ -588,6 +591,6 @@
     --hggs-shadow: 0 0 1px 6px var(--hggs-color-primary-007);
 
     /* LOGO */
-    --hggs-logo-default: url("./assets/svg/logo-dark.svg");
+    --hggs-logo: url("./assets/svg/hggs-theme-caramel-logo-dark.svg");
   }
 }

@@ -634,6 +634,57 @@ d css code
 
 ### Development
 
+#### Development Playground
+
+##### Component model
+
+The component model is a javascript Object that describes the structure of a component running in our dev playground. It is used to generate the HTML and CSS for the component.
+
+> [!TIP]
+> Take a look to [component.mjs](#componentamjs) file section to see where you should place it.
+
+This object will describe use cases for the component in terms of CSS classes that will be applied to the component.
+
+See here some example of a component model structure in `javascript`:
+
+```javascript
+const componentModel = {
+  title: 'Box',
+  classes: {
+    structure: {
+      values: ['hggs-box'],
+      next: [
+        {
+          values: ['hggs-box-header'],
+          next: [{
+            values: ['hggs-box-title', 'hggs-h4'],
+            next: null
+          }]
+        },
+        {
+          values: ['hggs-box-body'],
+          next: null
+        }
+      ]
+    },
+    modifiers: {
+      "0": { // Level 0 in the structure
+        values: ['hggs-list--marker'],
+        type: "individual"  // Can be `individual` or `grouped`
+      }
+    }
+  }
+};
+```
+
+> [!IMPORTANT]
+> For the `modifiers` property we can apply them as `individual` or `grouped`.
+>
+> 1. If we apply them as `individual`, it means that the engine will render the `structure` for each of the individuals per defined level.
+> 2. If we apply them as `grouped`, it means that the engine will only render the `structure` once applying all `modifiers` once at the specified level.
+
+##### Run development playground
+
 Then to develop purposes we need run one of this scripts:
 
 | Script                      |  Description                                                                        |   Output             |  Port  |

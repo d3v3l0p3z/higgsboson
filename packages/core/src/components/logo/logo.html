@@ -42,12 +42,12 @@
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import model from "./logo.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

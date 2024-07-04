@@ -122,13 +122,13 @@
   <!-- render component -->
   <script type="module" async>
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import model from "./dialog.mjs";
     import bindDialogEvents from "./bindDialogEvents.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

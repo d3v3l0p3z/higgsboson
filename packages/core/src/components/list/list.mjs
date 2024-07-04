@@ -1,35 +1,24 @@
-const data = {
+export const model = {
   title: "List",
-  default: [
-    {
-      titles: {
-        list: "hggs-list",
-        item: "hggs-list-item",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        titles: {
-          list: titleStyles,
-          item: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        list: ["hggs-list"],
-        item: ["hggs-list-item"],
-      },
-      labels: {
-        items: [
-          "First item on the list.",
-          "Second item on the list.",
-          "Third term on the list.",
-          "Fourth term on the list.",
-          "Sixth term on the list.",
-          "Seventh term on the list.",
-        ],
-      },
+  structure: {
+    tag: "ul",
+    classes: ["hggs-list"],
+    modifiers: null,
+    labels: null,
+    next: {
+      tag: "li",
+      classes: ["hggs-list-item"],
+      modifiers: ["hggs-list--marker"],
+      labels: [
+        "First item on the list.",
+        "Second item on the list.",
+        "Third term on the list.",
+        "Fourth term on the list.",
+        "Sixth term on the list.",
+        "Seventh term on the list.",
+      ],
     },
-  ],
+  },
 };
 
-export default data;
+export default model;

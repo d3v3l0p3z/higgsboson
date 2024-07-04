@@ -166,7 +166,7 @@
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import setGlobal from "../../../setGlobal.mjs";
     import model, { iconStyles, iconLabeledStyles } from "./icons.mjs";
 
@@ -175,7 +175,7 @@
     setGlobal("iconStyles",iconStyles);
     setGlobal("iconLabeledStyles",iconLabeledStyles);
 
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

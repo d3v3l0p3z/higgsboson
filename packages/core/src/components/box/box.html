@@ -130,14 +130,14 @@
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import setGlobal from "../../../setGlobal.mjs";
     import model, { boxStyles } from "./box.mjs";
 
     const configuration = await getConfiguration("../../../");
 
     setGlobal("boxStyles",boxStyles);
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

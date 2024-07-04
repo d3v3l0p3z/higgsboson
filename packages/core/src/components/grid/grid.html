@@ -100,14 +100,14 @@
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import setGlobal from "../../../setGlobal.mjs";
     import model, { sectionStyles } from "./grid.mjs";
 
     const configuration = await getConfiguration("../../../");
 
     setGlobal("sectionStyles",sectionStyles);
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

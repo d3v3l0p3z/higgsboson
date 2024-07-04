@@ -5,66 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-list</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
-
-  <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
-  </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- list template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(l) { %>
-      <%
-        const articleStyles = getStyles(l?.styles?.article);
-        const headerStyles = getStyles(l?.styles?.header);
-        const listTitleStyle = getStyles(l?.styles?.titles?.list);
-        const itemTitleStyle = getStyles(l?.styles?.titles?.item);
-        const listTitle = l?.titles?.list;
-        const itemTitle = l?.titles?.item;
-        const listClasses = getClasses(l?.classes?.list);
-        const itemClasses = getClasses(l?.classes?.item);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= listTitleStyle %>">
-            <%= listTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= itemTitleStyle %>">
-            <%= itemTitle %>
-          </h4>
-        </header>
-        <ul class="<%= listClasses %>">
-          <% _.each(l.labels.items, function(i) { %>
-            <li class="<%= itemClasses %>">
-              <%= i %>
-            </li>
-          <% }); %>
-          <li class="<%= itemClasses %>">
-            Item with link <a href="../" class="hggs-link">back to menu</a>
-          </li>
-        </ul>
-      </article>
-    <% }); %>
-  </script>
+  <body></body>
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import renderComponentStory from "../../../renderComponentStory.mjs";
     import model from "./list.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    renderComponentStory(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

@@ -227,7 +227,7 @@
   <!-- render component -->
   <script type="module">
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
+    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
     import setGlobal from "../../../setGlobal.mjs";
     import { iconStyles, iconLabeledStyles } from "../icons/icons.mjs";
     import model, { buttonStyles, buttonIconStyles, buttonStylesWithMarginBottom } from "./buttons.mjs";
@@ -240,7 +240,7 @@
     setGlobal("buttonIconStyles",buttonIconStyles);
     setGlobal("buttonStylesWithMarginBottom",buttonStylesWithMarginBottom);
 
-    renderComponent({
+    renderComponentDeprecated({
       model,
       configuration
     });

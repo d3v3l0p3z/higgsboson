@@ -7,10 +7,10 @@
   --box-margin: var(--hggs-space-lg) 0;
   --box-padding: var(--hggs-space-2xl) var(--hggs-space);
   --box-header-border-bottom: var(--hggs-border);
-  --box-header-padding: 0 0 0 0;
+  --box-header-padding: 0 var(--hggs-space-md) 0 var(--hggs-space-md);
   --box-title-font-size: var(--hggs-font-size-md);
   --box-title-margin-top: 0;
-  --box-body-padding: var(--hggs-space-lg) 0 0 0;
+  --box-body-padding: var(--hggs-space-lg) var(--hggs-space-md) var(--hggs-space-lg) var(--hggs-space-md) ;
   --box-border-radius-with-radius: var(--hggs-border-radius-md);
   --box-color-primary: var(--hggs-color);
   --box-background-primary: var(--hggs-color-background-000);

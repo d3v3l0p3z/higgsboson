@@ -1,145 +1,57 @@
-export const boxStyles = [""];
-
-const data = {
+const model = {
   title: "Box",
-  default: [
+  structures: [
     {
-      titles: {
-        box: "hggs-box",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-        },
-      },
-      classes: {
-        box: ["hggs-box"],
-      },
+      tag: "div",
+      classes: [
+        "hggs-box",
+        "hggs-box hggs-box--rounded",
+        "hggs-box hggs-box--primary",
+        "hggs-box hggs-box--primary hggs-box--rounded",
+      ],
+      labels: null,
+      next: null,
     },
     {
-      titles: {
-        box: "hggs-box",
-        header: "hggs-box-header",
-        title: "hggs-box-title hggs-h4",
-        body: "hggs-box-body",
-      },
-      title: "hggs-box",
-      styles: {
-        article: articleStyles,
-        header: headerStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-          header: titleIndentation1xStyles,
-          title: titleIndentation2xStyles,
-          body: titleIndentation1xStyles,
+      tag: "div",
+      classes: [
+        "hggs-box",
+        "hggs-box hggs-box--rounded",
+        "hggs-box hggs-box--primary",
+        "hggs-box hggs-box--primary hggs-box--rounded",
+      ],
+      labels: null,
+      next: [
+        {
+          tag: "header",
+          classes: ["hggs-box-header"],
+          labels: null,
+          next: [
+            {
+              tag: "h4",
+              classes: ["hggs-h4"],
+              labels: ["Title to this box"],
+              next: null,
+            },
+          ],
         },
-      },
-      classes: {
-        box: ["hggs-box"],
-        boxHeader: ["hggs-box-header"],
-        boxTitle: ["hggs-box-title", "hggs-h4"],
-        boxBody: ["hggs-box-body"],
-      },
-    },
-    {
-      titles: {
-        box: "hggs-box hggs-box--rounded",
-        header: "hggs-box-header",
-        title: "hggs-box-title hggs-h4",
-        body: "hggs-box-body",
-      },
-      styles: {
-        article: articleStyles,
-        header: headerStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-          header: titleIndentation1xStyles,
-          title: titleIndentation2xStyles,
-          body: titleIndentation1xStyles,
+        {
+          tag: "section",
+          classes: ["hggs-box-body"],
+          labels: null,
+          next: [
+            {
+              tag: "p",
+              classes: ["hggs-text"],
+              labels: [
+                "Chanante ipsum dolor sit amet, soooy crossoverr nisi forrondosco dolore ahí va qué chorrazo chotera eveniet atiendee. Chachachá ut a tope con la maquinaria, zagal gambitero ea sed enratonao pepinoninoni saepe. Coconut estoy fatal de lo mío adipisicing cabeza de viejo cuerpo de joven chavalada eiusmod to sueltecico enjuto mojamuto bonico del tó. Cascoporro con las rodillas in the guanter piticli vivo con tu madre en un castillo freshquisimo ayy qué gustico tontaco. Asquerosito aliqua eres un pirámidee ojete calor ea agazapao. Churretoso nuiiiii exercitation pero qué pelazo monguer Guaper interneeeer melifluo droja payacho mamellas.",
+              ],
+            },
+          ],
         },
-      },
-      classes: {
-        box: ["hggs-box", "hggs-box--rounded"],
-        boxHeader: ["hggs-box-header"],
-        boxTitle: ["hggs-box-title", "hggs-h4"],
-        boxBody: ["hggs-box-body"],
-      },
-    },
-  ],
-  primary: [
-    {
-      titles: {
-        box: "hggs-box hggs-box--primary",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-        },
-      },
-      classes: {
-        box: ["hggs-box", "hggs-box--primary"],
-      },
-    },
-    {
-      titles: {
-        box: "hggs-box hggs-box--primary",
-        header: "hggs-box-header",
-        title: "hggs-box-title hggs-h4",
-        body: "hggs-box-body",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-          header: titleIndentation1xStyles,
-          title: titleIndentation2xStyles,
-          body: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        box: ["hggs-box", "hggs-box--primary"],
-        boxHeader: ["hggs-box-header"],
-        boxTitle: ["hggs-box-title", "hggs-h4"],
-        boxBody: ["hggs-box-body"],
-      },
-    },
-    {
-      titles: {
-        box: "hggs-box hggs-box--primary hggs-box--rounded",
-        header: "hggs-box-header",
-        title: "hggs-box-title hggs-h4",
-        body: "hggs-box-body",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        box: boxStyles,
-        box: boxStyles,
-        titles: {
-          box: titleStyles,
-          header: titleIndentation1xStyles,
-          title: titleIndentation2xStyles,
-          body: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        box: ["hggs-box", "hggs-box--primary", "hggs-box--rounded"],
-        boxHeader: ["hggs-box-header"],
-        boxTitle: ["hggs-box-title", "hggs-h4"],
-        boxBody: ["hggs-box-body"],
-      },
+      ],
     },
   ],
 };
 
-export default data;
+export default model;

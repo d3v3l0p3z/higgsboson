@@ -23,7 +23,7 @@ export { getIds, getStyles, getClasses, getClassesIf, hasClass, isDarkTheme } fr
 export { default as getConfiguration } from "./getConfiguration.mjs";
 export { default as loadThemeStyles } from "./loadThemeStyles.mjs";
 export { default as renderComponentDeprecated } from "./renderComponentDeprecated.mjs";
-export { default as renderComponentStory } from "./renderComponentStory.mjs";
+export { default as renderStory } from "./renderStory.mjs";
 export { default as renderTemplateIntoBodyDomNode } from "./renderTemplateIntoBodyDomNode.mjs";
 export { default as setGlobal } from "./setGlobal.mjs";
 export { default as setGlobalDataModel } from "./setGlobalDataModel.mjs";

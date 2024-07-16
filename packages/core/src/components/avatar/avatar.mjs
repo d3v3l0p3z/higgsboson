@@ -1,105 +1,25 @@
-const data = {
+export const model = {
   title: "Avatar",
-  default: [
+  structures: [
     {
-      titles: {
-        figure: "hggs-avatar",
-        image: "hggs-image",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        titles: {
-          figure: titleStyles,
-          image: titleIndentation1xStyles,
+      tag: "figure",
+      classes: ["hggs-avatar", "hggs-avatar hggs-avatar--big", "hggs-avatar hggs-avatar--small"],
+      labels: null,
+      next: [
+        {
+          tag: "img",
+          classes: ["hggs-avatar-image"],
+          attributes: [
+            {
+              src: "https://javierlopezdeancos.dev/img/st09FDI0DN-500.webp",
+              alt: "Higgsboson avatar example",
+            },
+          ],
+          next: null,
         },
-      },
-      classes: {
-        figure: ["hggs-avatar"],
-        image: ["hggs-avatar-image"],
-      },
-      attributes: {
-        image: {
-          src: "https://javierlopezdeancos.dev/img/st09FDI0DN-500.webp",
-          alt: "higgsboson avatar example",
-        },
-      },
-    },
-  ],
-  sizes: [
-    {
-      titles: {
-        figure: "hggs-avatar hggs-avatar--big",
-        image: "hggs-image",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        titles: {
-          figure: titleStyles,
-          image: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        figure: ["hggs-avatar hggs-avatar--big"],
-        image: ["hggs-avatar-image"],
-      },
-      attributes: {
-        image: {
-          src: "https://javierlopezdeancos.dev/img/st09FDI0DN-500.webp",
-          alt: "Higgsboson avatar example",
-        },
-      },
-    },
-    {
-      titles: {
-        figure: "hggs-avatar",
-        image: "hggs-image",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        titles: {
-          figure: titleStyles,
-          image: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        figure: ["hggs-avatar"],
-        image: ["hggs-avatar-image"],
-      },
-      attributes: {
-        image: {
-          src: "https://javierlopezdeancos.dev/img/st09FDI0DN-500.webp",
-          alt: "Higgsboson avatar example",
-        },
-      },
-    },
-    {
-      titles: {
-        figure: "hggs-avatar hggs-avatar--small",
-        image: "hggs-image",
-      },
-      styles: {
-        header: headerStyles,
-        article: articleStyles,
-        titles: {
-          figure: titleStyles,
-          image: titleIndentation1xStyles,
-        },
-      },
-      classes: {
-        figure: ["hggs-avatar hggs-avatar--small"],
-        image: ["hggs-avatar-image"],
-      },
-      attributes: {
-        image: {
-          src: "https://javierlopezdeancos.dev/img/st09FDI0DN-500.webp",
-          alt: "Higgsboson avatar example",
-        },
-      },
+      ],
     },
   ],
 };
 
-export default data;
+export default model;

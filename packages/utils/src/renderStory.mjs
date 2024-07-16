@@ -18,10 +18,11 @@ function getNodesModel(structures) {
   for (let s = 0; s < structures.length; s++) {
     const structure = structures[s];
 
-    const { tag, classes, labels, next } = structure;
+    const { tag, classes, labels, attributes, next } = structure;
 
     const structureHasAtLeastOneClass = classes && Array.isArray(classes) && classes.length > 0;
     const structureHasAtLeastOneLabel = classes && Array.isArray(labels) && labels.length > 0;
+
     const nextStructureHasMoreThanOneClass = getNextStructureHasMoreThanOneClass(next);
 
     nodes[s] = [];
@@ -37,6 +38,19 @@ function getNodesModel(structures) {
                     tag,
                     class: classes[c],
                     label: labels[l],
+                    attributes:
+                      Array.isArray(attributes) && attributes.length >= l && (attributes[l]?.src || attributes[l]?.alt)
+                        ? {
+                            src:
+                              Array.isArray(attributes) && attributes.length >= l && attributes[l]?.src
+                                ? attributes[l].src
+                                : null,
+                            alt:
+                              Array.isArray(attributes) && attributes.length >= l && attributes[l]?.alt
+                                ? attributes[l].alt
+                                : null,
+                          }
+                        : null,
                     next: null,
                   };
 
@@ -53,6 +67,19 @@ function getNodesModel(structures) {
                   tag,
                   class: classes[c],
                   label: null,
+                  attributes:
+                    Array.isArray(attributes) && attributes.length >= c && (attributes[c]?.src || attributes[c]?.alt)
+                      ? {
+                          src:
+                            Array.isArray(attributes) && attributes.length >= c && attributes[c]?.src
+                              ? attributes[c].src
+                              : null,
+                          alt:
+                            Array.isArray(attributes) && attributes.length >= c && attributes[c]?.alt
+                              ? attributes[c]?.alt
+                              : null,
+                        }
+                      : null,
                   next: null,
                 };
 
@@ -75,6 +102,19 @@ function getNodesModel(structures) {
                 tag,
                 class: classes[c],
                 label: labels[l],
+                attributes:
+                  Array.isArray(attributes) && attributes.length >= l && (attributes[l]?.src || attributes[l]?.alt)
+                    ? {
+                        src:
+                          Array.isArray(attributes) && attributes.length >= l && attributes[l]?.src
+                            ? attributes[l].src
+                            : null,
+                        alt:
+                          Array.isArray(attributes) && attributes.length >= l && attributes[l]?.alt
+                            ? attributes[l].alt
+                            : null,
+                      }
+                    : null,
                 next: null,
               };
 
@@ -89,6 +129,19 @@ function getNodesModel(structures) {
               tag,
               class: classes[c],
               label: null,
+              attributes:
+                Array.isArray(attributes) && attributes.length >= c && (attributes[c]?.src || attributes[c]?.alt)
+                  ? {
+                      src:
+                        Array.isArray(attributes) && attributes.length >= c && attributes[c]?.src
+                          ? attributes[c].src
+                          : null,
+                      alt:
+                        Array.isArray(attributes) && attributes.length >= c && attributes[c]?.alt
+                          ? attributes[c]?.alt
+                          : null,
+                    }
+                  : null,
               next: null,
             };
 
@@ -212,7 +265,7 @@ function renderNodes(nodesModel, parentNode) {
     return;
   }
 
-  const { tag, class: c, label, next } = nodesModel;
+  const { tag, class: c, label, attributes, next } = nodesModel;
   const node = document.createElement(tag);
 
   const haveMoreThanOneClass = c && c.includes(" ");
@@ -225,6 +278,12 @@ function renderNodes(nodesModel, parentNode) {
     }
   } else {
     node.classList.add(c);
+  }
+
+  if (attributes) {
+    for (const attr in attributes) {
+      node.setAttribute(attr, attributes[attr]);
+    }
   }
 
   node.textContent = label;

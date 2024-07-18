@@ -10,5 +10,10 @@
   "description": "Higgsboson scripts utils tu run across packages.",
   "main": "src/index.mjs",
   "config": {},
-  "scripts": {}
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "test:coverage:recap": "node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
+    "test:coverage:report": "lcov-viewer lcov -o ./reports ./lcov.info"
+  }
 }

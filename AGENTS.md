@@ -233,7 +233,7 @@ See `RELEASE.md` for the full release and npm publish workflow.
 - We use [standard-version](https://github.com/conventional-changelog/standard-version) for automated semantic versioning
 - Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
 - `npm run release:patch` / `release:minor` / `release:major` to cut a release
-- `npm publish --access public` in each workspace (core first, then themes)
+- `npm publish --access public` for core and themes only (utils not published)
 - Themes declare `@higgsboson/core` as a `peerDependency` — consumers install them separately
 
 ### Package structure (split for consumers)
@@ -243,13 +243,14 @@ See `RELEASE.md` for the full release and npm publish workflow.
 | `packages/core` | `@higgsboson/core` | Core CSS classes (required by all themes) |
 | `packages/themes/captain-america` | `@higgsboson/theme-captain-america` | Captain America theme |
 | `packages/themes/caramel` | `@higgsboson/theme-caramel` | Caramel theme |
-| `packages/utils` | `@higgsboson/utils` | Renderer + utils |
+| `packages/utils` | `@higgsboson/utils` | Renderer + utils (**not published**, internal only) |
 
 ### Publish order
 1. `@higgsboson/core` (themes peer-depend on it)
 2. `@higgsboson/theme-captain-america`
 3. `@higgsboson/theme-caramel`
-4. `@higgsboson/utils`
+
+`@higgsboson/utils` is **internal-only** and **not published** to npm.
 
 ---
 

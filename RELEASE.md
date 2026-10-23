@@ -11,7 +11,7 @@ Consumers import packages separately. Each workspace is published as its own sco
 | `packages/core` | `@higgsboson/core` | Core CSS classes (default theme) — required by all themes |
 | `packages/themes/captain-america` | `@higgsboson/theme-captain-america` | Captain America theme (peerDepends on `@higgsboson/core`) |
 | `packages/themes/caramel` | `@higgsboson/theme-caramel` | Caramel theme (peerDepends on `@higgsboson/core`) |
-| `packages/utils` | `@higgsboson/utils` | Internal renderer + utils (published for transparency) |
+| `packages/utils` | `@higgsboson/utils` | Internal renderer + utils (**not published**) |
 
 **Consumers install what they need:**
 ```bash
@@ -101,11 +101,9 @@ npm publish --access public
 
 cd ../caramel
 npm publish --access public
-
-# Finally utils (optional, internal)
-cd ../../utils
-npm publish --access public
 ```
+
+`@higgsboson/utils` is **internal-only** and **not published** to npm.
 
 #### Option B: Staged publish (stage-only token, requires npm 12+)
 
@@ -122,11 +120,9 @@ npm stage publish --access public
 
 cd ../caramel
 npm stage publish --access public
-
-# Finally utils
-cd ../../utils
-npm stage publish --access public
 ```
+
+`@higgsboson/utils` is **internal-only** and **not published** to npm.
 
 After staging, a maintainer with 2FA enabled must promote each staged version:
 
@@ -134,7 +130,6 @@ After staging, a maintainer with 2FA enabled must promote each staged version:
 npm stage promote @higgsboson/core@<version> --from=stage --to=latest
 npm stage promote @higgsboson/theme-captain-america@<version> --from=stage --to=latest
 npm stage promote @higgsboson/theme-caramel@<version> --from=stage --to=latest
-npm stage promote @higgsboson/utils@<version> --from=stage --to=latest
 ```
 
 **To get a full publish token:** Go to https://www.npmjs.com/settings/TOKENS, create a new "Automation" token with **Read + Publish** access (not "Read + Publish (stage-only)"), and enable 2FA on your npm account.

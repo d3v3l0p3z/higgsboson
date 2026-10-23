@@ -621,7 +621,7 @@ Higgsboson is published as separate scoped npm packages so consumers can install
 | `packages/core` | `@higgsboson/core` | All themes (peer dependency) |
 | `packages/themes/captain-america` | `@higgsboson/theme-captain-america` | `@higgsboson/core` |
 | `packages/themes/caramel` | `@higgsboson/theme-caramel` | `@higgsboson/core` |
-| `packages/utils` | `@higgsboson/utils` | — |
+| `packages/utils` | `@higgsboson/utils` | Internal only — **not published** |
 
 **Consumers install what they need:**
 ```bash
@@ -632,6 +632,8 @@ npm install @higgsboson/core
 npm install @higgsboson/core @higgsboson/theme-captain-america
 npm install @higgsboson/core @higgsboson/theme-caramel
 ```
+
+**Internal-only:** `@higgsboson/utils` ships renderer and mock infrastructure used by component pages and tests. It is **not published** to npm.
 
 #### Release scripts
 

@@ -724,8 +724,6 @@ npm install @higgsboson/core @higgsboson/theme-captain-america
 npm install @higgsboson/core @higgsboson/theme-caramel
 ```
 
-**`@higgsboson/utils` is internal-only — not published to npm.** Consumers never install it.
-
 #### Include the CSS in your project
 
 The built CSS files are published to npm's `dist/` folder. You have three clean ways to include them — **never reference `node_modules/` directly in HTML**:

@@ -652,6 +652,8 @@ npm install @higgsboson/core @higgsboson/theme-caramel
    - Creates a git tag (e.g., `v1.0.0`)
 4. **Push**: `git push origin main --follow-tags` (pre-push hook runs lint)
 5. **Publish** (core first, then themes):
+
+   **Direct publish** (full publish token with `Read + Publish` access):
    ```bash
    cd packages/core && npm publish --access public
    cd packages/themes/captain-america && npm publish --access public
@@ -659,7 +661,23 @@ npm install @higgsboson/core @higgsboson/theme-caramel
    cd packages/utils && npm publish --access public
    ```
 
-**Required:** Set `NPM_TOKEN` in your publishing environment. See `.npmrc`.
+   **Staged publish** (stage-only token, requires npm 12+):
+   ```bash
+   cd packages/core && npm stage publish --access public
+   cd packages/themes/captain-america && npm stage publish --access public
+   cd packages/themes/caramel && npm stage publish --access public
+   cd packages/utils && npm stage publish --access public
+   ```
+   
+   Then a maintainer with 2FA promotes each staged version:
+   ```bash
+   npm stage promote @higgsboson/core@<version> --from=stage --to=latest
+   npm stage promote @higgsboson/theme-captain-america@<version> --from=stage --to=latest
+   npm stage promote @higgsboson/theme-caramel@<version> --from=stage --to=latest
+   npm stage promote @higgsboson/utils@<version> --from=stage --to=latest
+   ```
+
+**Token requirements:** Your `NPM_TOKEN` must be a full publish token (`Read + Publish`, not stage-only). Create one at https://www.npmjs.com/settings/TOKENS and enable 2FA on your npm account. See `.npmrc` for the env var format.
 
 For the full release process, changelog convention, and pre-release checklist, see [`RELEASE.md`](./RELEASE.md).
 

@@ -84,6 +84,12 @@ The `pre-push` hook runs lint on all workspaces before allowing the push.
 
 Publish each workspace individually. Themes must be published after core (they peerDepend on it).
 
+**Token requirements:** Your `NPM_TOKEN` must be a **full publish token** (not stage-only). If your token is stage-only, you'll get an error like:
+
+> Stage-only tokens cannot publish new package versions directly. Versions must be staged with `npm stage publish` and then promoted by a maintainer with two-factor authentication (2FA) enabled.
+
+#### Option A: Direct publish (full publish token, npm 10.x)
+
 ```bash
 # Publish core first
 cd packages/core
@@ -101,9 +107,43 @@ cd ../../utils
 npm publish --access public
 ```
 
+#### Option B: Staged publish (stage-only token, requires npm 12+)
+
+If your token is stage-only and you have npm 12+, use `npm stage publish` instead:
+
+```bash
+# Publish core first (stages the version)
+cd packages/core
+npm stage publish --access public
+
+# Then themes
+cd ../themes/captain-america
+npm stage publish --access public
+
+cd ../caramel
+npm stage publish --access public
+
+# Finally utils
+cd ../../utils
+npm stage publish --access public
+```
+
+After staging, a maintainer with 2FA enabled must promote each staged version:
+
+```bash
+npm stage promote @higgsboson/core@<version> --from=stage --to=latest
+npm stage promote @higgsboson/theme-captain-america@<version> --from=stage --to=latest
+npm stage promote @higgsboson/theme-caramel@<version> --from=stage --to=latest
+npm stage promote @higgsboson/utils@<version> --from=stage --to=latest
+```
+
+**To get a full publish token:** Go to https://www.npmjs.com/settings/TOKENS, create a new "Automation" token with **Read + Publish** access (not "Read + Publish (stage-only)"), and enable 2FA on your npm account.
+
 **Required:** Set `NPM_TOKEN` in your environment (GitHub Actions secret or local env). The `.npmrc` references it:
 
 ```
+registry=https://registry.npmjs.org/
+access=public
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
 ```
 

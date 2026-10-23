@@ -6,7 +6,7 @@
 Higgsboson is a themeable semantic classeless framework to style core native components.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Issues](https://img.shields.io/github/issues/javierlopezdeancos/higgsboson?style=flat-square)](https://github.com/javierlopezdeancos/higgsboson/issues)
+[![Issues](https://img.shields.io/github/issues/developez404/higgsboson?style=flat-square)](https://github.com/developez404/higgsboson/issues)
 [![Stage - Alpha](https://img.shields.io/badge/Stage-Alpha-f9f504)](https://)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
@@ -67,8 +67,8 @@ Higgsboson is a themeable semantic classeless framework to style core native com
 
 ## What is next
 
-Take a look into the active [project board](https://github.com/users/javierlopezdeancos/projects/3/views/2)
-or more deeper view in [issues](https://github.com/javierlopezdeancos/higgsboson/issues).
+Take a look into the active [project board](https://github.com/users/developez404/projects/3/views/2)
+or more deeper view in [issues](https://github.com/developez404/higgsboson/issues).
 
 ## Why Higgsboson?
 
@@ -176,7 +176,7 @@ All available core components defined from their selectors, properties and value
 ###### Components docs
 
 - [Avatar](/packages/core/src/components/avatar/avatar.md)
-- [Avatars](/packages/core/src/components/avatar/avatars.md)
+- [Avatars](/packages/core/src/components/avatars/avatars.md)
 - [Blockquote](/packages/core/src/components/blockquote/blockquote.md)
 - [Box](/packages/core/src/components/box/box.md)
 - [Button](/packages/core/src/components/buttons/buttons.md)
@@ -527,51 +527,30 @@ However, for consistency, we describe here what our ideal folder structure and v
 
 ###### Complete graph of the ideal higgsboson flow
 
-```
-                               THEME
-                            ┌──────────────────────────────────────────────────────┐
-                            │                                                      │
-                            │                ┌───────────────────────────┐         │
-                            │                │                           │         │
-                            │                │                           │         │
-                            │                │       theme vars          │         │
-                            │                │     │             │       │         │
-                            │                └─────┼─────────────┼───────┘         │
-                            │                      │             │                 │
-                            │                ┌─────┼──────┐ ┌────┼───────┐         │
-                            │                │     │      │ │    │       │         │
-                            │                │     ▼      │ │    ▼       │         │
-                            │                │ ComponentA │ │ ComponentB │         │
-                            └──────────────  │ theme      │ │ theme      ├─────────┘
-                                             │ values     │ │ values     │
-                                             │    │       │ │    │       │
-                                             └────┼───────┘ └────┼───────┘
-                                                  │              │
-                                             ┌────┼───────┐ ┌────┼───────┐
-                                             │    │       │ │    │       │
-  CORE                                       │    ▼       │ │    ▼       │
- ┌───────────────────────────────────────────┤ ComponentA │ │ ComponentB ├─────────┐
- │                                           │ theme      │ │ theme      │         │
- │                                           │ properties │ │ properties │         │
- │                                           │    │       │ │     │      │         │
- │                                           └────┼───────┘ └─────┼──────┘         │
- │                                                │               │                │
- │                                  ┌─────────────┼───────┐ ┌─────┼──────────────┐ │
- │                                  │             │       │ │     │              │ │
- │   ┌───────────────────────────┐  │             │       │ │     │              │ │
- │   │                           │  │             ▼       │ │     ▼              │ │
- │   │                     ┌─────┼──┼───────►             │ │                    │ │
- │   │      default vars   │     │  │    COMPONENT A      │ │    COMPONENT B     │ │
- │   │                     │     │  │                     │ │                    │ │
- │   └─────────────────────┼─────┘  │                     │ │        ▲           │ │
- │                         │        │                     │ │        │           │ │
- │                         │        └─────────────────────┘ └────────┼───────────┘ │
- │                         │                                         │             │
- │                         │                                         │             │
- │                         │                                         │             │
- │                         └─────────────────────────────────────────┘             │
- │                                                                                 │
- └─────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph THEME["THEME"]
+        TV["theme vars"]
+        CAV["Component A theme values"]
+        CBV["Component B theme values"]
+        CAP["Component A theme properties"]
+        CBP["Component B theme properties"]
+        TV --> CAV
+        TV --> CBV
+        CAV --> CAP
+        CBV --> CBP
+    end
+
+    subgraph CORE["CORE"]
+        DV["default vars"]
+        CA["COMPONENT A"]
+        CB["COMPONENT B"]
+        DV --> CA
+        DV --> CB
+    end
+
+    CAP --> CA
+    CBP --> CB
 ```
 
 ##### Dev a theme

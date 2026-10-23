@@ -28,21 +28,9 @@
 
 ```html
 <article class="hggs-texts">
-  <p class="hggs-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-    sapien eget turpis lobortis rutrum.
-  </p>
-  <p class="hggs-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-    sapien eget turpis lobortis rutrum.
-  </p>
-  <p class="hggs-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-    sapien eget turpis lobortis rutrum.
-  </p>
-  <p class="hggs-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-    sapien eget turpis lobortis rutrum.
-  </p>
+  <p class="hggs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
+  <p class="hggs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
+  <p class="hggs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
+  <p class="hggs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 </article>
 ```

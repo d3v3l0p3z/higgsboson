@@ -57,80 +57,31 @@
 ```html
 <details class="hggs-dropdown" open="">
   <summary class="hggs-dropdown-selected-options">
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-placeholder"
-      title="Select an item..."
-      checked=""
-    />
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-item-1"
-      title="Item 1"
-    />
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-item-2"
-      title="Item 2"
-    />
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-item-3"
-      title="Item 3"
-    />
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-item-4"
-      title="Item 4"
-    />
-    <input
-      class="hggs-dropdown-selected-option"
-      type="radio"
-      name="hggs-dropdown-item"
-      id="hggs-dropdown-item-5"
-      title="Item 5"
-    />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-placeholder" title="Select an item..." checked="" />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-item-1" title="Item 1" />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-item-2" title="Item 2" />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-item-3" title="Item 3" />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-item-4" title="Item 4" />
+    <input class="hggs-dropdown-selected-option" type="radio" name="hggs-dropdown-item" id="hggs-dropdown-item-5" title="Item 5" />
   </summary>
   <ul class="hggs-dropdown-options">
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-placeholder">
-        Select an item...
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-placeholder"> Select an item... </label>
     </li>
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-1">
-        Item 1
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-1"> Item 1 </label>
     </li>
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-2">
-        Item 2
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-2"> Item 2 </label>
     </li>
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-3">
-        Item 3
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-3"> Item 3 </label>
     </li>
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-4">
-        Item 4
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-4"> Item 4 </label>
     </li>
     <li class="hggs-dropdown-option">
-      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-5">
-        Item 5
-      </label>
+      <label class="hggs-dropdown-option-label" for="hggs-dropdown-item-5"> Item 5 </label>
     </li>
   </ul>
 </details>

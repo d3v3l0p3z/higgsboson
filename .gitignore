@@ -10,3 +10,5 @@ dist
 # Visual Studio Code
 .vscode
 
+# Vercel
+.vercel

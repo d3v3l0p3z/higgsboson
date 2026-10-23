@@ -43,8 +43,6 @@
 
 ```html
 <blockquote class="hggs-blockquote">
-  <p class="hggs-text">
-    This is an excellent example paragraph.
-  </p>
+  <p class="hggs-text">This is an excellent example paragraph.</p>
 </blockquote>
 ```

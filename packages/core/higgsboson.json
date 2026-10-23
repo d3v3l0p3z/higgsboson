@@ -148,11 +148,6 @@
       "new": false
     },
     {
-      "name": "Texts",
-      "path": "./src/components/text/texts.html",
-      "new": false
-    },
-    {
       "name": "Tooltip",
       "path": "./src/components/tooltip/tooltip.html",
       "new": false

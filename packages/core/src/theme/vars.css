@@ -34,7 +34,7 @@
   --hggs-color-secondary-default: var(--hggs-color-gray-017-default);
   --hggs-color-secondary-hover-default: var(--hggs-color-primary-default);
   --hggs-color-tertiary-default: var(--hggs-color-gray-014-default);
-  --hggs-color-tertiary-hover-default: var(--hggs-color-secondaary-default);
+  --hggs-color-tertiary-hover-default: var(--hggs-color-secondary-default);
   --hggs-color-quaternary-default: var(--hggs-color-black-default);
   --hggs-color-quaternary-hover-default: var(--hggs-color-quaternary-default);
   --hggs-color-quinary-default: var(--hggs-color-white-default);

@@ -281,7 +281,10 @@ Files still off-limits:
 | Check LTS Node | `npm view node dist-tags --json` |
 | Cut release (patch) | `npm run release:patch` |
 | Cut release (minor) | `npm run release:minor` |
-| Publish core | `cd packages/core && npm publish --access public` |
-| Publish theme | `cd packages/themes/<name> && npm publish --access public` |
+| Publish core | `npm run publish:core` |
+| Publish theme captain-america | `npm run publish:captain-america` |
+| Publish theme caramel | `npm run publish:caramel` |
+| Stage all packages | `npm run publish:stage:all` |
+| Promote all packages | `npm run publish:promote:all` |
 | Check test status | `105/105 passing` |
 

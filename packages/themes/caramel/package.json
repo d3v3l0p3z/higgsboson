@@ -59,6 +59,8 @@
     "format": "npx stylelint --fix \"$npm_package_config_input_directory_sources_name/**/*.css\"",
     "lint": "npx stylelint \"$npm_package_config_input_directory_sources_name/**/*.css\"",
     "server:start": "lite-server",
-    "dev": "concurrently \"npm run build:watch\" \"npm run server:start\""
+    "dev": "concurrently \"npm run build:watch\" \"npm run server:start\"",
+    "publish:stage": "npm stage publish --access public",
+    "publish:promote": "npm stage promote @higgsboson/theme-caramel@$npm_package_version --from=stage --to=latest"
   }
 }

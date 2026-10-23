@@ -643,6 +643,14 @@ npm install @higgsboson/core @higgsboson/theme-caramel
 | `release:patch` | Bump patch version (bug fixes) |
 | `release:minor` | Bump minor version (new features) |
 | `release:major` | Bump major version (breaking changes) |
+| `publish:stage:core` | Stage core package for publish |
+| `publish:stage:captain-america` | Stage captain-america theme for publish |
+| `publish:stage:caramel` | Stage caramel theme for publish |
+| `publish:stage:all` | Stage all packages for publish |
+| `publish:promote:core` | Promote staged core package to latest |
+| `publish:promote:captain-america` | Promote staged captain-america theme to latest |
+| `publish:promote:caramel` | Promote staged caramel theme to latest |
+| `publish:promote:all` | Promote all staged packages to latest |
 
 #### Release workflow
 
@@ -657,27 +665,32 @@ npm install @higgsboson/core @higgsboson/theme-caramel
 
    **Direct publish** (full publish token with `Read + Publish` access):
    ```bash
-   cd packages/core && npm publish --access public
-   cd packages/themes/captain-america && npm publish --access public
-   cd packages/themes/caramel && npm publish --access public
-   cd packages/utils && npm publish --access public
+   npm run publish:core
+   npm run publish:captain-america
+   npm run publish:caramel
    ```
 
    **Staged publish** (stage-only token, requires npm 12+):
    ```bash
-   cd packages/core && npm stage publish --access public
-   cd packages/themes/captain-america && npm stage publish --access public
-   cd packages/themes/caramel && npm stage publish --access public
-   cd packages/utils && npm stage publish --access public
+   # Stage all packages
+   npm run publish:stage:all
+
+   # Promote all packages (maintainer with 2FA)
+   npm run publish:promote:all
    ```
-   
-   Then a maintainer with 2FA promotes each staged version:
+
+   Or publish/promote individual packages:
    ```bash
-   npm stage promote @higgsboson/core@<version> --from=stage --to=latest
-   npm stage promote @higgsboson/theme-captain-america@<version> --from=stage --to=latest
-   npm stage promote @higgsboson/theme-caramel@<version> --from=stage --to=latest
-   npm stage promote @higgsboson/utils@<version> --from=stage --to=latest
+   npm run publish:core
+   npm run publish:captain-america
+   npm run publish:caramel
+
+   npm run publish:promote:core
+   npm run publish:promote:captain-america
+   npm run publish:promote:caramel
    ```
+
+   `@higgsboson/utils` is **internal-only** and **not published** to npm.
 
 **Token requirements:** Your `NPM_TOKEN` must be a full publish token (`Read + Publish`, not stage-only). Create one at https://www.npmjs.com/settings/TOKENS and enable 2FA on your npm account. See `.npmrc` for the env var format.
 

@@ -68,7 +68,15 @@
     "release": "standard-version",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "publish:stage:core": "npm run publish:stage --workspace packages/core",
+    "publish:stage:captain-america": "npm run publish:stage --workspace packages/themes/captain-america",
+    "publish:stage:caramel": "npm run publish:stage --workspace packages/themes/caramel",
+    "publish:stage:all": "npm run publish:stage:core && npm run publish:stage:captain-america && npm run publish:stage:caramel",
+    "publish:promote:core": "npm run publish:promote --workspace packages/core",
+    "publish:promote:captain-america": "npm run publish:promote --workspace packages/themes/captain-america",
+    "publish:promote:caramel": "npm run publish:promote --workspace packages/themes/caramel",
+    "publish:promote:all": "npm run publish:promote:core && npm run publish:promote:captain-america && npm run publish:promote:caramel"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.0",

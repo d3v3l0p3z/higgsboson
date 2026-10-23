@@ -62,10 +62,10 @@ Higgsboson is a themeable semantic classeless framework to style core native com
     - [Format](#format)
     - [Pre-push](#pre-push)
       - [Usage](#usage)
-    - [How to consume](#how-to-consume)
   - [Tools that could help you to develop in this project](#tools-that-could-help-you-to-develop-in-this-project)
     - [Visual Studio Code IDE](#visual-studio-code-ide)
       - [Visual Studio Code useful Extensions](#visual-studio-code-useful-extensions)
+  - [How to consume](#how-to-consume)
 
 ## What is next
 
@@ -728,35 +728,40 @@ npm install @higgsboson/core @higgsboson/theme-caramel
 
 #### Include the CSS in your project
 
-After installing, include the built CSS files. The order matters: core first, then your theme on top.
+The built CSS files are published to npm's `dist/` folder. You have three clean ways to include them — **never reference `node_modules/` directly in HTML**:
 
-**Option 1: Link directly from `node_modules`**
+**Option A: Use a CDN (fastest, no build step)**
 
 ```html
 <!-- Core (required) -->
-<link rel="stylesheet" href="node_modules/@higgsboson/core/dist/higgsboson-core.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@higgsboson/core@latest/dist/higgsboson-core.min.css">
 
 <!-- Theme (optional, loads on top of core) -->
-<link rel="stylesheet" href="node_modules/@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@higgsboson/theme-captain-america@latest/dist/higgsboson-theme-captain-america.min.css">
 ```
 
-**Option 2: Copy `dist/` files to your project**
+**Option B: Copy `dist/` files to your project**
 
-Copy the `.min.css` files from `node_modules/@higgsboson/core/dist/` and `node_modules/@higgsboson/theme-*/dist/` into your project's CSS folder, then link them:
+After `npm install`, copy the `.min.css` files into your project's static assets folder:
+
+```bash
+cp node_modules/@higgsboson/core/dist/higgsboson-core.min.css public/css/
+cp node_modules/@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css public/css/
+```
 
 ```html
-<link rel="stylesheet" href="css/higgsboson-core.min.css">
-<link rel="stylesheet" href="css/higgsboson-theme-captain-america.min.css">
+<link rel="stylesheet" href="/css/higgsboson-core.min.css">
+<link rel="stylesheet" href="/css/higgsboson-theme-captain-america.min.css">
 ```
 
-**Option 3: Import in your CSS build process**
-
-If you use a CSS bundler (PostCSS, Vite, Webpack, etc.):
+**Option C: Import in your CSS bundler (Vite, Webpack, PostCSS, etc.)**
 
 ```css
-@import "node_modules/@higgsboson/core/dist/higgsboson-core.min.css";
-@import "node_modules/@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css";
+@import "@higgsboson/core/dist/higgsboson-core.min.css";
+@import "@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css";
 ```
+
+The order matters: **core first, then theme on top**.
 
 #### Use the components
 
@@ -775,7 +780,61 @@ Once the CSS is loaded, use the component classes in your HTML:
 
 See the [component documentation](#components-docs) for all available classes and modifiers.
 
----
+#### Consume in a React (or similar JS) app
+
+Higgsboson is **CSS-only** — there are no React components to import. You install the CSS packages and apply the classes in your JSX:
+
+**Install:**
+
+```bash
+npm install @higgsboson/core @higgsboson/theme-captain-america
+```
+
+**Import the CSS in your entry file (`main.jsx`, `index.js`, `App.css`, etc.):**
+
+```jsx
+// Option 1: Import from node_modules (via your bundler)
+import "@higgsboson/core/dist/higgsboson-core.min.css";
+import "@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css";
+
+// Option 2: Import copied local files
+import "./css/higgsboson-core.min.css";
+import "./css/higgsboson-theme-captain-america.min.css";
+```
+
+**Use classes in JSX:**
+
+```jsx
+function MyComponent() {
+  return (
+    <div className="hggs-box hggs-box--rounded">
+      <h2 className="hggs-h2">Hello, Higgsboson!</h2>
+      <button className="hggs-button hggs-button--primary hggs-button--rounded">
+        Click me
+      </button>
+      <input className="hggs-input" type="text" placeholder="Enter text" />
+    </div>
+  );
+}
+```
+
+**In Next.js (App Router):**
+
+```jsx
+// app/layout.tsx or app/page.tsx
+import "@higgsboson/core/dist/higgsboson-core.min.css";
+import "@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-america.min.css";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+See the [component documentation](#components-docs) for all available classes and modifiers.
 
 ### Development
 

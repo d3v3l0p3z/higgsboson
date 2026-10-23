@@ -56,6 +56,7 @@ Higgsboson is a themeable semantic classeless framework to style core native com
     - [Install](#install)
     - [Build](#build)
       - [Plugins that we are using in the build process](#plugins-that-we-are-using-in-the-build-process)
+    - [Release](#release)
     - [Development](#development)
     - [Lint](#lint)
     - [Format](#format)
@@ -610,6 +611,59 @@ d css code
 - [postcss-preset-env](https://preset-env.cssdb.org/)
 - [postcss-copy-assets](https://github.com/shutterstock/postcss-copy-assets)
 - [cssnano](https://cssnano.co/)
+
+### Release
+
+Higgsboson is published as separate scoped npm packages so consumers can install only what they need:
+
+| Package | npm name | Required by |
+|---------|----------|-------------|
+| `packages/core` | `@higgsboson/core` | All themes (peer dependency) |
+| `packages/themes/captain-america` | `@higgsboson/theme-captain-america` | `@higgsboson/core` |
+| `packages/themes/caramel` | `@higgsboson/theme-caramel` | `@higgsboson/core` |
+| `packages/utils` | `@higgsboson/utils` | — |
+
+**Consumers install what they need:**
+```bash
+# Core only
+npm install @higgsboson/core
+
+# Core + a theme (both required for themed styling)
+npm install @higgsboson/core @higgsboson/theme-captain-america
+npm install @higgsboson/core @higgsboson/theme-caramel
+```
+
+#### Release scripts
+
+| Script | Description |
+|--------|-------------|
+| `release` | Run standard-version (interactive) |
+| `release:patch` | Bump patch version (bug fixes) |
+| `release:minor` | Bump minor version (new features) |
+| `release:major` | Bump major version (breaking changes) |
+
+#### Release workflow
+
+1. **Verify**: `npm run test:utils` and `npm run pre-push` must pass
+2. **Build**: `npm run build` (produces `dist/` for each workspace)
+3. **Cut release**: `npm run release:patch` (or `:minor` / `:major`)
+   - Bumps versions based on conventional commits (`feat:` → minor, `fix:` → patch)
+   - Generates `CHANGELOG.md`
+   - Creates a git tag (e.g., `v1.0.0`)
+4. **Push**: `git push origin main --follow-tags` (pre-push hook runs lint)
+5. **Publish** (core first, then themes):
+   ```bash
+   cd packages/core && npm publish --access public
+   cd packages/themes/captain-america && npm publish --access public
+   cd packages/themes/caramel && npm publish --access public
+   cd packages/utils && npm publish --access public
+   ```
+
+**Required:** Set `NPM_TOKEN` in your publishing environment. See `.npmrc`.
+
+For the full release process, changelog convention, and pre-release checklist, see [`RELEASE.md`](./RELEASE.md).
+
+---
 
 ### Development
 

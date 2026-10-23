@@ -6,7 +6,7 @@
 Higgsboson is a themeable semantic classeless framework to style core native components.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Issues](https://img.shields.io/github/issues/developez404/higgsboson?style=flat-square)](https://codeberg.org/higgsboson/higgsboson/issues)
+[![Issues](https://img.shields.io/github/issues/d3v3l0p3z/higgsboson?style=flat-square)](https://codeberg.org/higgsboson/higgsboson/issues)
 [![Stage - Alpha](https://img.shields.io/badge/Stage-Alpha-f9f504)](https://)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
@@ -69,7 +69,7 @@ Higgsboson is a themeable semantic classeless framework to style core native com
 
 ## What is next
 
-Take a look into the active [project board](https://github.com/users/developez404/projects/3/views/2)
+Take a look into the active [project board](https://github.com/users/d3v3l0p3z/projects/3/views/2)
 or more deeper view in [issues](https://codeberg.org/higgsboson/higgsboson/issues).
 
 ## Why Higgsboson?

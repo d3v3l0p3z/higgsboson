@@ -95,11 +95,11 @@
     "postcss-cli": "^11.0.0",
     "postcss-copy-assets": "^0.3.1",
     "postcss-import": "^16.1.0",
-    "postcss-nesting": "^12.1.5",
-    "postcss-preset-env": "^9.5.14",
+    "postcss-nesting": "^14.0.3",
+    "postcss-preset-env": "^11.6.1",
     "postcss-reporter": "^7.1.0",
     "standard-version": "^9.5.0",
-    "stylelint": "^16.6.1",
+    "stylelint": "^16.26.1",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-use-nesting": "^5.1.1"
   }

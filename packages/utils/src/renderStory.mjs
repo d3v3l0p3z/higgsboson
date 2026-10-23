@@ -382,6 +382,7 @@ function renderStory(model) {
     } else {
       const articleNode = document.getElementById(`story-${n}`);
 
+      // eslint-disable-next-line no-undef
       renderNodes(storyStructureNodeModels, articleNode);
     }
   }

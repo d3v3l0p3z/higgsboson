@@ -79,6 +79,8 @@
     "publish:promote:all": "npm run publish:promote:core && npm run publish:promote:captain-america && npm run publish:promote:caramel"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@eslint/js": "^9.30.0",
     "@lcov-viewer/cli": "^1.3.0",
     "autoprefixer": "^10.4.19",
@@ -87,6 +89,7 @@
     "cssnano": "^7.0.3",
     "cssnano-preset-advanced": "^7.0.3",
     "husky": "^9.0.11",
+    "jsdom": "^26.0.0",
     "lite-server": "^2.6.1",
     "postcss": "^8.4.38",
     "postcss-cli": "^11.0.0",
@@ -98,7 +101,6 @@
     "standard-version": "^9.5.0",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
-    "stylelint-use-nesting": "^5.1.1",
-    "jsdom": "^26.0.0"
+    "stylelint-use-nesting": "^5.1.1"
   }
 }

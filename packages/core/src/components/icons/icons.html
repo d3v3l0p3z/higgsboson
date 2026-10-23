@@ -1,183 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-icon</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
-    <script id="template" type="text/template">
-      <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-      <!-- default icon -->
-
-      <% _.each(data.default, function(i) { %>
-        <%
-          const articleStyles = getStyles(i?.styles?.article);
-          const headerStyles = getStyles(i?.styles?.header);
-          const iconTitleStyles = getStyles(i?.styles?.titles?.icon);
-          const iconTitle = i?.titles?.icon;
-          const iconClasses = getClasses(i?.classes?.icon);
-          const iconStyles = getStyles(i?.styles?.icon);
-        %>
-
-        <article style="<%= articleStyles %>">
-          <header style="<%= headerStyles %>">
-            <h3 class="hggs-h3" style="<%= iconTitleStyles %>">
-              <%= iconTitle %>
-            </h3>
-          </header>
-          <div class="hggs-flex hggs-flex--column-top-left hggs-flex--gap-small">
-            <% _.each(i?.classes?.icon?.sizes, function(s) { %>
-              <div class="hggs-flex hggs-flex--row-top-left hggs-flex--gap-small">
-                <% _.each(i?.classes?.icon?.types, function(t) { %>
-                  <%
-                    let iconClasses = getClasses(t);
-
-                    if (i?.classes?.icon?.modifier) {
-                      iconClasses = iconClasses + " " + i.classes.icon.modifier;
-                    }
-
-                    iconClasses = iconClasses + " " + s;
-                  %>
-
-                  <span class="<%= iconClasses %>" style="<%= iconStyles %>"></span>
-                <% }) %>
-              </div>
-            <% }) %>
-          </div>
-        </article>
-      <% }) %>
-
-      <!-- labeled icon -->
-
-      <% _.each(data.labeled, function(i) { %>
-        <%
-          const articleStyles = getStyles(i?.styles?.article);
-          const headerStyles = getStyles(i?.styles?.header);
-          const wrapperTitleStyles = getStyles(i?.styles?.titles?.wrapper);
-          const wrapperTitle = i?.titles?.wrapper;
-          const wrapperClasses = getClasses(i?.classes?.wrapper);
-          const wrapperStyles = getStyles(i?.styles?.wrapper);
-          const iconTitleStyles = getStyles(i?.styles?.titles?.icon);
-          const iconTitle = i?.titles?.icon;
-          const iconClasses = getClasses(i?.classes?.icon);
-          const iconStyles = getStyles(i?.styles?.icon);
-          const labelTitleStyles = getStyles(i?.styles?.titles?.label);
-          const labelTitle = i?.titles?.label;
-          const labelClasses = getClasses(i?.classes?.label);
-          const labelStyles = getStyles(i?.styles?.label);
-         %>
-
-        <article style="<%= articleStyles %>">
-          <header style="<%= headerStyles %>">
-            <h3 class="hggs-h3" style="<%= wrapperTitleStyles %>">
-              <%= wrapperTitle %>
-            </h3>
-            <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-              <%= iconTitle %>
-            </h4>
-          </header>
-           <div class="hggs-flex hggs-flex--column-top-left hggs-flex--gap-small">
-            <% _.each(i?.classes?.icon?.sizes, function(s) { %>
-              <div class="hggs-flex hggs-flex--row-top-left hggs-flex--gap-small">
-                <% _.each(i?.classes?.icon?.types, function(t) { %>
-                  <%
-                    let iconClasses = getClasses(t);
-
-                    if (i?.classes?.icon?.modifier) {
-                      iconClasses = iconClasses + " " + i.classes.icon.modifier;
-                    }
-
-                    iconClasses = iconClasses + " " + s;
-                  %>
-
-                  <div class="<%= wrapperClasses %>">
-                    <span class="<%= iconClasses %>"></span>
-                    <span class="<%= labelClasses %>">Button labeled</span>
-                  </div>
-                <% }) %>
-              </div>
-            <% }) %>
-          </div>
-        </article>
-      <% }) %>
-
-      <!-- shape icon -->
-
-      <%
-        const shapes = _.keys(data?.shapes);
-
-        _.each(shapes, function(s) {
-          _.each(data?.shapes[s], function(i) {
-      %>
-            <%
-              const articleStyles = getStyles(i?.styles?.article);
-              const headerStyles = getStyles(i?.styles?.header);
-              const wrapperTitleStyles = getStyles(i?.styles?.titles?.wrapper);
-              const wrapperTitle = i?.titles?.wrapper;
-              const wrapperStyles = getStyles(i?.styles?.wrapper);
-              const iconTitleStyles = getStyles(i?.styles?.titles?.icon);
-              const iconTitle = i?.titles?.icon;
-              const iconClasses = getClasses(i?.classes?.icon);
-              const iconStyles = getStyles(i?.styles?.icon);
-            %>
-
-            <article style="<%= articleStyles %>">
-              <header style="<%= headerStyles %>">
-                <h3 class="hggs-h3" style="<%= wrapperTitleStyles %>">
-                  <%= wrapperTitle %>
-                </h3>
-                <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-                  <%= iconTitle %>
-                </h4>
-              </header>
-              <div class="hggs-flex hggs-flex--column-top-left hggs-flex--gap-small">
-                <% _.each(i?.classes?.icon?.sizes, function(s) { %>
-                  <div class="hggs-flex hggs-flex--row-top-left hggs-flex--gap-small">
-                    <% _.each(i?.classes?.icon?.types, function(t) { %>
-                      <%
-                        let wrapperClasses = getClasses(i?.classes?.wrapper);
-                        let iconClasses = getClasses(t);
-
-                        wrapperClasses = wrapperClasses + " " + s;
-                      %>
-
-                      <div class="<%= wrapperClasses %>">
-                        <span class="<%= iconClasses %>"></span>
-                      </div>
-                    <% }) %>
-                  </div>
-                <% }) %>
-              </div>
-            </article>
-          <% }) %>
-        <% }) %>
-    </script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import setGlobal from "../../../setGlobal.mjs";
-    import model, { iconStyles, iconLabeledStyles } from "./icons.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./icons-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    setGlobal("iconStyles",iconStyles);
-    setGlobal("iconLabeledStyles",iconLabeledStyles);
-
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

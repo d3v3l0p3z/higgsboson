@@ -1,181 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-titles</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-   <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- titles template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default -->
-    <% _.each(data.default, function(h, i) { %>
-
-      <%
-        const articleStyles = getStyles(h?.styles?.article);
-        const headerStyles = getStyles(h?.styles?.header);
-        const titleTitleStyles = getStyles(h?.styles?.titles?.title);
-        const titleTitle = h?.titles?.title;
-        const titleClasses = getClasses(h?.classes?.title);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= titleTitleStyles %>">
-            <%= titleTitle %>
-          </h3>
-        </header>
-
-        <% if (i === 0) { %>
-          <h1 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h1>
-        <% } else if (i === 1) { %>
-          <h2 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h2>
-        <% } else if (i === 2) { %>
-          <h3 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h3>
-        <% } else if (i === 3) { %>
-          <h4 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h4>
-        <% } else if (i === 4) { %>
-          <h5 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h5>
-        <% } else if (i === 5) { %>
-          <h6 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h6>
-        <% } %>
-      </article>
-    <% }); %>
-
-    <!-- unbalanced -->
-    <% _.each(data.unbalanced, function(h, i) { %>
-
-      <%
-        const articleStyles = getStyles(h?.styles?.article);
-        const headerStyles = getStyles(h?.styles?.header);
-        const titleTitleStyles = getStyles(h?.styles?.titles?.title);
-        const titleTitle = h?.titles?.title;
-        const titleClasses = getClasses(h?.classes?.title);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= titleTitleStyles %>">
-            <%= titleTitle %>
-          </h3>
-        </header>
-
-        <% if (i === 0) { %>
-          <h1 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h1>
-        <% } else if (i === 1) { %>
-          <h2 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h2>
-        <% } else if (i === 2) { %>
-          <h3 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h3>
-        <% } else if (i === 3) { %>
-          <h4 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h4>
-        <% } else if (i === 4) { %>
-          <h5 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h5>
-        <% } else if (i === 5) { %>
-          <h6 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h6>
-        <% } else { %>
-          <h1 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h1>
-        <% } %>
-      </article>
-    <% }); %>
-
-    <!-- alignment -->
-    <% _.each(data.alignment, function(h, i) { %>
-
-      <%
-        const articleStyles = getStyles(h?.styles?.article);
-        const headerStyles = getStyles(h?.styles?.header);
-        const titleTitleStyles = getStyles(h?.styles?.titles?.title);
-        const titleTitle = h?.titles?.title;
-        const titleClasses = getClasses(h?.classes?.title);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= titleTitleStyles %>">
-            <%= titleTitle %>
-          </h3>
-        </header>
-
-        <% if (i === 0) { %>
-          <h1 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h1>
-        <% } else if (i === 1) { %>
-          <h2 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h2>
-        <% } else if (i === 2) { %>
-          <h3 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h3>
-        <% } else if (i === 3) { %>
-          <h4 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h4>
-        <% } else if (i === 4) { %>
-          <h5 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h5>
-        <% } else if (i === 5) { %>
-          <h6 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h6>
-        <% } else { %>
-          <h1 class="<%= titleClasses %>">
-            <%= h.label %>
-          </h1>
-        <% } %>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./titles.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./titles-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

@@ -1,70 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-switch</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- switch template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(s) { %>
-      <%
-        const articleStyles = getStyles(s?.styles?.article);
-        const headerStyles = getStyles(s?.styles?.header);
-        const switchTitleStyles = getStyles(s?.styles?.titles?.switch);
-        const switchTitle = s?.titles?.switch;
-        const switchClasses = getClasses(s?.classes?.switch);
-        const switchInputId = s?.ids.input;
-        const switchLabelFor = s?.fors.label;
-        const inputTitleStyles = getStyles(s?.styles?.titles?.input);
-        const inputTitle = s?.titles?.input;
-        const labelTitleStyles = getStyles(s?.styles?.titles?.label);
-        const labelTitle = s?.titles?.label;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= switchTitleStyles %>">
-            <%= switchTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= inputTitleStyles %>">
-            <%= inputTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= labelTitleStyles %>">
-            <%= labelTitle %>
-          </h4>
-        </header>
-        <div class="<%= switchClasses %>">
-          <input type="checkbox" id="<%= switchInputId %>">
-          <label for="<%= switchLabelFor %>">Switch</label>
-          <label class="hggs-label" for="<%= switchLabelFor %>">Active Superpowers</label>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./switch.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./switch-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

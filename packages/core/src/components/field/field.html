@@ -1,129 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-field</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
-    <script id="template" type="text/template">
-      <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-      <% _.each(data.default, function(f, index) { %>
-        <%
-          const articleStyles = getStyles(f?.styles?.article);
-          const headerStyles = getStyles(f?.styles?.header);
-          const fieldTitleStyles = getStyles(f?.styles?.title?.field);
-          const labelTitleStyles = getStyles(f?.styles?.title?.label);
-          const inputTitleStyles = getStyles(f?.styles?.title?.input);
-          const fieldTitle = f?.titles?.field;
-          const labelTitle = f?.titles?.label;
-          const inputTitle = f?.titles?.input;
-          const fieldClasses = getClasses(f?.classes?.field);
-          const labelClasses = getClasses(f?.classes?.label);
-          const inputClasses = getClasses(f?.classes?.input);
-        %>
-        <article style="<%= articleStyles %>">
-          <header style="<%= headerStyles %>">
-            <h3 class="hggs-h3" style="<%= fieldTitleStyles %>"><%= fieldTitle %></h3>
-            <h4 class="hggs-h4" style="<%= labelTitleStyles %>"><%= labelTitle %></h4>
-            <h4 class="hggs-h4" style="<%= inputTitleStyles %>"><%= inputTitle %></h4>
-          </header>
-          <div class="<%= fieldClasses %>">
-            <label for="id-test-<%=index%>" class="<%= labelClasses %>">Label</label>
-            <input id="id-test-<%=index%>" class="<%= inputClasses %>" type="text" class="hggs-input" />
-          </div>
-        </article>
-      <% }) %>
-    </script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
- <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- field template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default box -->
-
-    <% _.each(data.default, function(a) { %>
-      <%
-        const articleStyles = getStyles(a?.styles?.article);
-        const headerStyles = getStyles(a?.styles?.header);
-        const figureTitle = a?.titles?.figure;
-        const figureTitleStyles = getStyles(a?.styles?.titles?.figure);
-        const figureClass = getClasses(a?.classes?.figure);
-        const imageTitle = a?.titles?.image;
-        const imageTitleStyles = getStyles(a?.styles?.titles?.image);
-        const imageClass = getClasses(a?.classes?.image);
-        const imageSrc = a?.attributes?.image?.src;
-        const imageAlt = a?.attributes?.image?.alt;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= figureTitleStyles %>">
-            <%= figureTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= imageTitleStyles %>">
-            <%= imageTitle %>
-          </h4>
-        </header>
-
-        <figure class="<%= figureClass %>">
-          <img class="<%= imageClass %>" src="<%= imageSrc %>" alt="<%= imageAlt %>" />
-        </figure>
-      </article>
-    <% }); %>
-
-    <!-- sizes box -->
-
-    <% _.each(data.sizes, function(a) { %>
-      <%
-        const articleStyles = getStyles(a?.styles?.article);
-        const headerStyles = getStyles(a?.styles?.header);
-        const figureTitle = a?.titles?.figure;
-        const figureTitleStyles = getStyles(a?.styles?.titles?.figure);
-        const figureClass = getClasses(a?.classes?.figure);
-        const imageTitle = a?.titles?.image;
-        const imageTitleStyles = getStyles(a?.styles?.titles?.image);
-        const imageClass = getClasses(a?.classes?.image);
-        const imageSrc = a?.attributes?.image?.src;
-        const imageAlt = a?.attributes?.image?.alt;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= figureTitleStyles %>">
-            <%= figureTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= imageTitleStyles %>">
-            <%= imageTitle %>
-          </h4>
-        </header>
-
-        <figure class="<%= figureClass %>">
-          <img class="<%= imageClass %>" src="<%= imageSrc %>" alt="<%= imageAlt %>" />
-        </figure>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./field.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./field-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

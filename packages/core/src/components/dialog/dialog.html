@@ -1,138 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-box</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
- <!-- add global helpers -->
-  <script type="module" async>
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- dialog template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(d) { %>
-      <%
-        const articleStyles = getStyles(d?.styles?.article);
-        const headerStyles = getStyles(d?.styles?.header);
-        const dialogTitleStyles = getStyles(d?.styles?.titles?.dialog);
-        const headerTitleStyles = getStyles(d?.styles?.titles?.header);
-        const closeButtonTitleStyles = getStyles(d?.styles?.titles?.closeButton);
-        const closeIconTitleStyles = getStyles(d?.styles?.titles?.closeIcon);
-        const bodyTitleStyles = getStyles(d?.styles?.titles?.body);
-        const footerTitleStyles = getStyles(d?.styles?.titles?.footer);
-        const actionsTitleStyles = getStyles(d?.styles?.titles?.actions);
-        const okButtonTitleStyles = getStyles(d?.styles?.titles?.okButton);
-        const dialogIds = getIds(d?.ids?.dialog);
-        const dialogTitle= d?.titles?.dialog;
-        const headerTitle= d?.titles?.header;
-        const closeButtonTitle= d?.titles?.closeButton;
-        const closeIconTitle= d?.titles?.closeIcon;
-        const bodyTitle= d?.titles?.body;
-        const footerTitle= d?.titles?.footer;
-        const actionsTitle= d?.titles?.actions;
-        const okButtonTitle= d?.titles?.okButton;
-        const dialogClasses = getClasses(d?.classes?.dialog);
-        const headerClasses = getClasses(d?.classes?.header);
-        const closeButtonClasses = getClasses(d?.classes?.closeButton);
-        const closeIconClasses = getClasses(d?.classes?.closeIcon);
-        const bodyClasses = getClasses(d?.classes?.body);
-        const footerClasses = getClasses(d?.classes?.footer);
-        const actionsClasses = getClasses(d?.classes?.actions);
-        const triggerButtonIds = getIds(d.ids.triggerButton);
-        const triggerButtonClasses = getClasses(d.classes.triggerButton);
-        const triggerButtonLabel = d.label.triggerButton;
-        const closeButtonIds = getIds(d.ids.closeButton);
-        const okButtonIds = getIds(d.ids.okButton);
-      %>
-        <article style="<%= articleStyles %>">
-          <header style="<%= headerStyles %>">
-            <h3 class="hggs-h3" style="<%= dialogTitleStyles %>">
-              <%= dialogTitle %>
-            </h3>
-            <h4 class="hggs-h4" style="<%= headerTitleStyles %>">
-              <%= headerTitle %>
-            </h4>
-            <h5 class="hggs-h5" style="<%= closeButtonTitleStyles %>">
-              <%= closeButtonTitle %>
-            </h5>
-            <h6 class="hggs-h6" style="<%= closeIconTitleStyles %>">
-              <%= closeIconTitle %>
-            </h6>
-            <h4 class="hggs-h4" style="<%= bodyTitleStyles %>">
-              <%= bodyTitle %>
-            </h4>
-            <h4 class="hggs-h4" style="<%= footerTitleStyles %>">
-              <%= footerTitle %>
-            </h4>
-            <h5 class="hggs-h5" style="<%= actionsTitleStyles %>">
-              <%= actionsTitle %>
-            </h5>
-            <h6 class="hggs-h6" style="<%= okButtonTitleStyles %>">
-              <%= okButtonTitle %>
-            </h6>
-          </header>
-          <dialog id="<%= dialogIds %>" class="<%= dialogClasses %>">
-            <header class="<%= headerClasses %>">
-              <button
-                id="<%= closeButtonIds %>"
-                class="<%= closeButtonClasses %>"
-              >
-                <span class="<%= closeIconClasses %>"></span>
-              </button>
-              <h4 class="hggs-h4">Template Created</h4>
-            </header>
-            <section class="<%= bodyClasses %>">
-              <p class="hggs-text">
-                The case template has now been added to your list of available
-                templates. To create a case with this template select 'Create' and chose
-                'New case'. You can then select your new case template from the
-                available list.
-              </p>
-            </section>
-            <footer class="<%= footerClasses %>">
-              <div class="<%= actionsClasses %>">
-                <button
-                  id="<%= okButtonIds %>"
-                  class="hggs-button hggs-button--primary hggs-button"
-                >
-                  OK
-                </button>
-              </div>
-            </footer>
-          </dialog>
-
-          <button
-            id="<%= triggerButtonIds %>"
-            class="<%= triggerButtonClasses %>"
-          >
-            <%= triggerButtonLabel %>
-          </button>
-        </article>
-    <% }) %>
-  </script>
   <!-- render component -->
   <script type="module" async>
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./dialog.mjs";
-    import bindDialogEvents from "./bindDialogEvents.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./dialog-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
-
-    bindDialogEvents();
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

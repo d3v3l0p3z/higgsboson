@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<htm lang="en">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-list</title>
   </head>
-  <body></body>
+  <body>
+    <div id="hggs-root"></div>
+  </body>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
     import loadThemeStyles from "../../../loadThemeStyles.mjs";
-    import renderStory from "../../../renderStory.mjs";
-    import model from "./list.mjs";
+    import render from "../../../render.mjs";
+    import model from "./list-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderStory(model);
+    render(model);
+    addMarkupHeaders(model);
     loadThemeStyles(configuration);
   </script>
 </html>

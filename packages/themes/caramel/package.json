@@ -8,7 +8,46 @@
     "url": "https://javierlopezdeancos.dev/"
   },
   "description": "Caramel theme to higgsboson css framework.",
+  "homepage": "https://higgsboson.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://codeberg.org/higgsboson/higgsboson.git",
+    "directory": "packages/themes/caramel"
+  },
+  "bugs": {
+    "url": "https://codeberg.org/higgsboson/higgsboson/issues"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "themeable",
+    "semantic",
+    "classless",
+    "components",
+    "theme",
+    "caramel"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/higgsboson-theme-caramel.min.css",
+  "style": "dist/higgsboson-theme-caramel.min.css",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "@higgsboson/core": "^0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@higgsboson/core": {
+      "optional": true
+    }
+  },
   "config": {
     "input_directory_sources_name": "src",
     "output_filename": "higgsboson-theme-caramel",

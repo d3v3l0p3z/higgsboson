@@ -1,56 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-text</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- text template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(t) { %>
-      <%
-        const articleStyles = getStyles(t?.styles?.article);
-        const headerStyles = getStyles(t?.styles?.header);
-        const textTitleStyles = getStyles(t?.styles?.titles?.text);
-        const textTitle = t?.titles?.text;
-        const textClasses = getClasses(t?.classes?.text);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= textTitleStyles %>">
-            <%= textTitle %>
-          </h3>
-        </header>
-        <p class="<%= textClasses %>">
-          Chanante ipsum dolor sit amet, soooy crossoverr nisi forrondosco dolore ahí va qué chorrazo chotera eveniet atiendee. Chachachá ut a tope con la maquinaria, zagal gambitero ea sed enratonao pepinoninoni saepe. Coconut estoy fatal de lo mío adipisicing cabeza de viejo cuerpo de joven chavalada eiusmod to sueltecico enjuto mojamuto bonico del tó. Cascoporro con las rodillas in the guanter piticli vivo con tu madre en un castillo freshquisimo ayy qué gustico tontaco. Asquerosito aliqua eres un pirámidee ojete calor ea agazapao. Churretoso nuiiiii exercitation pero qué pelazo monguer Guaper interneeeer melifluo droja payacho mamellas.
-        </p>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./text.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./text-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

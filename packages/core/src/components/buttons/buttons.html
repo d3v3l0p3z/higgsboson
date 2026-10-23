@@ -1,248 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-button</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-   <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- button template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default buttons -->
-
-    <% _.each(data.default, function(b) { %>
-
-      <%
-        const articleStyles = getStyles(b?.styles?.article);
-        const buttonClass = getClasses(b?.classes?.button);
-        const buttonTitle = b?.titles?.button;
-        const buttonTitleStyles =  getStyles(b?.titles?.button);
-        const headerStyles = getStyles(b?.styles?.header);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= buttonTitleStyles %>">
-            <%= buttonTitle %>
-          </h3>
-        </header>
-        <button class="<%= buttonClass %>">Button</button>
-      </article>
-    <% }); %>
-
-    <!-- icon buttons -->
-
-    <% _.each(data.icons, (b) => { %>
-      <%
-        const articleStyles = getStyles(b?.styles?.article);
-        const buttonClass = getClasses(b?.classes?.button);
-        const buttonStyles = getStyles(b?.styles?.button);
-        const buttonTitle = b?.titles?.button;
-        const buttonTitleStyles =  getStyles(b?.styles?.titles?.button);
-        const headerStyles = getStyles(b?.styles?.header);
-        const iconButtonClasses = getClasses(b.classes.button);
-        const iconClass = getClasses(b?.classes?.icon);
-        const iconTitle = b?.titles?.icon;
-        const iconTitleStyles =  getStyles(b?.styles?.titles?.icon);
-      %>
-
-        <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= buttonTitleStyles %>">
-            <%= buttonTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-            <%= iconTitle %>
-          </h4>
-          <div class="hggs-flex hggs-flex--row-top-left">
-            <% _.each(b.classes.spanCommon, (spanClass, index) => { %>
-              <%
-                const iconSpanClasses = getClasses(spanClass);
-              %>
-
-              <button class="<%= iconButtonClasses %>" style="<%= buttonStyles %>">
-                <span class="<%= iconSpanClasses %>"></span>
-              </button>
-            <% }); %>
-          </div>
-        </header>
-      </article>
-    <% }); %>
-
-    <!-- icon buttons with labels -->
-
-    <% _.each(data.iconsWithLabel, (i) => { %>
-      <%
-        const articleStyles = getStyles(i?.styles?.article);
-        const buttonStyles = getStyles(i?.styles?.button);
-        const buttonTitle = i?.titles?.button;
-        const buttonTitleStyles =  getStyles(i?.styles?.titles?.button);
-        const headerStyles = getStyles(i?.styles?.header);
-        const iconButtonClass = getClasses(i.classes.button);
-        const iconTitle = i?.titles?.icon;
-        const iconTitleStyles =  getStyles(i?.styles?.titles?.icon);
-        const labelTitle = i?.titles?.label;
-        const labelTitleStyles =  getStyles(i?.styles?.titles?.label);
-        const wrapperTitle = i?.titles?.wrapper;
-        const wrapperTitleStyles =  getStyles(i?.styles?.titles?.wrapper);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= buttonTitleStyles %>">
-            <%= buttonTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= wrapperTitleStyles %>">
-            <%= wrapperTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= iconTitleStyles %>">
-            <%= iconTitle %>
-          </h5>
-          <h5 class="hggs-h5" style="<%= labelTitleStyles %>">
-            <%= labelTitle %>
-          </h5>
-        </header>
-
-        <div class="hggs-flex hggs-flex--row-top-left">
-          <% _.each(i.classes.spanCommon, (spanClasses, index) => { %>
-            <% const iconSpanClass = getClasses(spanClasses); %>
-
-            <button class="<%= iconButtonClass %>" style="<%= buttonStyles %>">
-              <div class="hggs-icon-wrapper">
-                <span class="<%= iconSpanClass %>"></span>
-                <span class="hggs-icon-label"> Button label</span>
-              </div>
-            </button>
-          <% }); %>
-
-        </div>
-      </article>
-    <% }); %>
-
-    <!-- square buttons -->
-
-    <% _.each(data.squareIcons, (s) => { %>
-      <%
-        const articleStyles = getStyles(s?.styles?.article);
-        const headerStyles = getStyles(s?.styles?.header);
-        const buttonTitle = s?.titles?.button;
-        const buttonTitleStyles =  getStyles(s?.styles?.titles?.button);
-        const buttonStyles = getStyles(s?.styles?.button);
-        const buttonsClasses = s.classes.buttons;
-        const iconsClasses = s.classes.icons;
-        const iconTitle = s?.titles?.icon;
-        const iconTitleStyles =  getStyles(s?.styles?.titles?.icon);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= buttonTitleStyles %>">
-            <%= buttonTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-            <%= iconTitle %>
-          </h4>
-        </header>
-
-        <div class="hggs-flex hggs-flex--column-top-left">
-          <% _.each(buttonsClasses, (b, index) => { %>
-            <%
-              const buttonClasses = getClasses(b);
-            %>
-
-            <div class="hggs-flex hggs-flex--row-top-left">
-              <% _.each(iconsClasses, (i, index) => { %>
-                <%
-                  const iconClasses = getClasses(i);
-                %>
-
-                <button class="<%= buttonClasses %>" style="<%= buttonStyles %>">
-                  <span class="<%= iconClasses %>"></span>
-                </button>
-              <% }); %>
-            </div>
-          <% }); %>
-        </div>
-      </article>
-    <% }); %>
-
-    <!-- circle buttons -->
-
-    <% _.each(data.circleIcons, (s) => { %>
-      <%
-        const articleStyles = getStyles(s?.styles?.article);
-        const headerStyles = getStyles(s?.styles?.header);
-        const buttonTitle = s?.titles?.button;
-        const buttonTitleStyles =  getStyles(s?.styles?.titles?.button);
-        const buttonStyles = getStyles(s?.styles?.button);
-        const buttonsClasses = s.classes.buttons;
-        const iconsClasses = s.classes.icons;
-        const iconTitle = s?.titles?.icon;
-        const iconTitleStyles =  getStyles(s?.styles?.titles?.icon);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= buttonTitleStyles %>">
-            <%= buttonTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-            <%= iconTitle %>
-          </h4>
-        </header>
-
-        <div class="hggs-flex hggs-flex--column-top-left">
-          <% _.each(buttonsClasses, (b, index) => { %>
-            <%
-              const buttonClasses = getClasses(b);
-            %>
-
-            <div class="hggs-flex hggs-flex--row-top-left">
-              <% _.each(iconsClasses, (i, index) => { %>
-                <%
-                  const iconClasses = getClasses(i);
-                %>
-
-                <button class="<%= buttonClasses %>" style="<%= buttonStyles %>">
-                  <span class="<%= iconClasses %>"></span>
-                </button>
-              <% }); %>
-            </div>
-          <% }); %>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import setGlobal from "../../../setGlobal.mjs";
-    import { iconStyles, iconLabeledStyles } from "../icons/icons.mjs";
-    import model, { buttonStyles, buttonIconStyles, buttonStylesWithMarginBottom } from "./buttons.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./buttons-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    setGlobal("iconStyles",iconStyles);
-    setGlobal("iconLabeledStyles",iconLabeledStyles);
-    setGlobal("buttonStyles",buttonStyles);
-    setGlobal("buttonIconStyles",buttonIconStyles);
-    setGlobal("buttonStylesWithMarginBottom",buttonStylesWithMarginBottom);
-
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

@@ -1,146 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-avatars</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- avatars template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default box -->
-
-    <% _.each(data.default, function(avs) { %>
-      <%
-        const articleStyles = getStyles(avs?.styles?.article);
-        const headerStyles = getStyles(avs?.styles?.header);
-        const listTitle = avs?.titles?.list;
-        const listTitleStyles = getStyles(avs?.styles?.titles?.list);
-        const listClass = getClasses(avs?.classes?.list);
-        const itemTitle = avs?.titles?.item;
-        const itemTitleStyles = getStyles(avs?.styles?.titles?.item);
-        const itemClass = getClasses(avs?.classes?.item);
-        const figureTitle = avs?.titles?.figure;
-        const figureTitleStyles = getStyles(avs?.styles?.titles?.figure);
-        const figureClass = getClasses(avs?.classes?.figure);
-        const imageTitle = avs?.titles?.image;
-        const imageTitleStyles = getStyles(avs?.styles?.titles?.image);
-        const imageClass = getClasses(avs?.classes?.image);
-        const imageSrc = avs?.attributes?.image?.src;
-        const imageAlt = avs?.attributes?.image?.alt;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= listTitleStyles %>">
-            <%= listTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= itemTitleStyles %>">
-            <%= itemTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= figureTitleStyles %>">
-            <%= figureTitle %>
-          </h5>
-          <h6 class="hggs-h6" style="<%= imageTitleStyles %>">
-            <%= imageTitle %>
-          </h6>
-        </header>
-
-        <ul class="<%= listClass %>">
-          <% _.each(avs?.attributes, function(atbs) { %>
-            <%
-              const imageSrc = atbs?.image?.src;
-              const imageAlt = atbs?.image?.alt;
-            %>
-
-            <li class="<%= itemClass %>"r>
-              <figure class="<%= figureClass %>">
-                <img class="<%= imageClass %>" src="<%= imageSrc %>" alt="<%= imageAlt %>" />
-              </figure>
-            </li>
-          <% }); %>
-        </ul>
-      </article>
-    <% }); %>
-
-    <!-- sizes box -->
-
-    <% _.each(data.sizes, function(avs) { %>
-      <%
-        const articleStyles = getStyles(avs?.styles?.article);
-        const headerStyles = getStyles(avs?.styles?.header);
-        const listTitle = avs?.titles?.list;
-        const listTitleStyles = getStyles(avs?.styles?.titles?.list);
-        const listClass = getClasses(avs?.classes?.list);
-        const itemTitle = avs?.titles?.item;
-        const itemTitleStyles = getStyles(avs?.styles?.titles?.item);
-        const itemClass = getClasses(avs?.classes?.item);
-        const figureTitle = avs?.titles?.figure;
-        const figureTitleStyles = getStyles(avs?.styles?.titles?.figure);
-        const figureClass = getClasses(avs?.classes?.figure);
-        const imageTitle = avs?.titles?.image;
-        const imageTitleStyles = getStyles(avs?.styles?.titles?.image);
-        const imageClass = getClasses(avs?.classes?.image);
-        const imageSrc = avs?.attributes?.image?.src;
-        const imageAlt = avs?.attributes?.image?.alt;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= listTitleStyles %>">
-            <%= listTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= itemTitleStyles %>">
-            <%= itemTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= figureTitleStyles %>">
-            <%= figureTitle %>
-          </h5>
-          <h6 class="hggs-h6" style="<%= imageTitleStyles %>">
-            <%= imageTitle %>
-          </h6>
-        </header>
-
-        <ul class="<%= listClass %>">
-          <% _.each(avs?.attributes, function(atbs) { %>
-            <%
-              const imageSrc = atbs?.image?.src;
-              const imageAlt = atbs?.image?.alt;
-            %>
-
-            <li class="<%= itemClass %>"r>
-              <figure class="<%= figureClass %>">
-                <img class="<%= imageClass %>" src="<%= imageSrc %>" alt="<%= imageAlt %>" />
-              </figure>
-            </li>
-          <% }); %>
-        </ul>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./avatars.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./avatars-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>
-

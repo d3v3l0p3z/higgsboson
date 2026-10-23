@@ -212,7 +212,7 @@ npm run dev:core:default   # port 8000
 | Dev server | `npm run dev:core:default` |
 | Prettier format | `npx prettier --write <files>` |
 | Check LTS Node | `npm view node dist-tags --json` |
-| Check test status | `107/107 passing` |
+| Check test status | `105/105 passing` |
 
 ---
 
@@ -222,3 +222,65 @@ npm run dev:core:default   # port 8000
 - Check existing component folders for patterns (especially `box`, `step`, `steps`, `table`, `grid`, `tooltip` for complex migration examples)
 - The test suite is the source of truth: if `npm run test:utils` passes (107/107), the change is safe
 - Ask the user before editing `higgsboson.json` manifests or touching files in the "Do Not Touch" list
+
+---
+
+## 14. Release Process
+
+See `RELEASE.md` for the full release and npm publish workflow.
+
+**Summary:**
+- We use [standard-version](https://github.com/conventional-changelog/standard-version) for automated semantic versioning
+- Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
+- `npm run release:patch` / `release:minor` / `release:major` to cut a release
+- `npm publish --access public` in each workspace (core first, then themes)
+- Themes declare `@higgsboson/core` as a `peerDependency` — consumers install them separately
+
+### Package structure (split for consumers)
+
+| Package | npm name | Contains |
+|---------|----------|----------|
+| `packages/core` | `@higgsboson/core` | Core CSS classes (required by all themes) |
+| `packages/themes/captain-america` | `@higgsboson/theme-captain-america` | Captain America theme |
+| `packages/themes/caramel` | `@higgsboson/theme-caramel` | Caramel theme |
+| `packages/utils` | `@higgsboson/utils` | Renderer + utils |
+
+### Publish order
+1. `@higgsboson/core` (themes peer-depend on it)
+2. `@higgsboson/theme-captain-america`
+3. `@higgsboson/theme-caramel`
+4. `@higgsboson/utils`
+
+---
+
+## 15. Constraints & Rules (Updated)
+
+**package.json files** were updated for publish config (access: public, files, engines, peerDependencies) — this is expected for release.
+
+Files still off-limits:
+| File/Area | Reason |
+|-----------|--------|
+| Root `README.md` | User's own uncommitted edits — do not touch |
+| Root `index.html` | User's own uncommitted edits — do not touch |
+| `packages/core/index.html` | Do not touch |
+| Theme `index.html`s (captain-america, caramel) | Do not touch |
+| `packages/core/dist/*` | Build output |
+| `packages/core/src/components/app/` | CSS-only shell, out of scope |
+
+---
+
+## 16. Quick Reference (Updated)
+
+| Task | Command |
+|------|---------|
+| Run all tests | `npm run test:utils` |
+| Regenerate mocks | `npm run mocks:update --workspace packages/utils <name>` |
+| Dev server | `npm run dev:core:default` |
+| Prettier format | `npx prettier --write <files>` |
+| Check LTS Node | `npm view node dist-tags --json` |
+| Cut release (patch) | `npm run release:patch` |
+| Cut release (minor) | `npm run release:minor` |
+| Publish core | `cd packages/core && npm publish --access public` |
+| Publish theme | `cd packages/themes/<name> && npm publish --access public` |
+| Check test status | `105/105 passing` |
+

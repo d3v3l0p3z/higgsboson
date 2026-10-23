@@ -1,115 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-grid</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- grid template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(g) { %>
-      <%
-        const articleStyles = getStyles(g?.styles?.article);
-        const headerStyles = getStyles(g?.styles?.header);
-        const sectionStyles = getStyles(g?.styles?.section);
-        const gridTitleStyles = getStyles(g?.styles?.titles?.grid);
-        const cellTitleStyles = getStyles(g?.styles?.titles?.cell);
-        const gridTitle = g?.titles?.grid;
-        const cellTitle = g?.titles?.cell;
-        const cellOneTitle = g?.titles?.cellOne;
-        const cellTwoTitle = g?.titles?.cellTwo;
-        const cellThreeTitle = g?.titles?.cellThree;
-        const cellFourTitle = g?.titles?.cellFour;
-        const cellFiveTitle = g?.titles?.cellFive;
-        const cellSixTitle = g?.titles?.cellSix;
-        const gridClasses = getClasses(g?.classes?.grid);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= gridTitleStyles %>">
-            <%= gridTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellOneTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellTwoTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellThreeTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellFourTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellFiveTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= cellTitleStyles %>">
-            <%= cellSixTitle %>
-          </h4>
-        </header>
-
-        <section style="<%= sectionStyles %>">
-          <div class="<%= gridClasses %>">
-            <% if(!g?.classes?.cells) { %>
-              <%
-                const cellClass = getClasses(g?.classes?.cell);
-                const cellStyles = getStyles(g?.styles?.cell);
-              %>
-
-              <div class="<%= gridClasses %>" style="<%= cellStyles %>"></div>
-            <% } else if (g?.classes?.cells) { %>
-              <% _.each(g.classes.cells, function(c, i) { %>
-                <%
-                  const cellClass = getClasses(c);
-                  let gridCellStyles = getStyles(smallLightGrayBoxWithHeightStyles);
-                %>
-
-                <%
-                  if (i === 1 || i === 3) {
-                    gridCellStyles = getStyles(smallDarkGrayBoxWithHeightStyles);
-                  } else if (i === 2 || i === 4) {
-                    gridCellStyles = getStyles(smallDarkerGrayBoxWithHeightStyles);
-                  }
-                %>
-
-                <div class="<%= cellClass %>" style="<%= gridCellStyles %>"></div>
-              <% }); %>
-            <% } %>
-          </div>
-        </section>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import setGlobal from "../../../setGlobal.mjs";
-    import model, { sectionStyles } from "./grid.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./grid-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    setGlobal("sectionStyles",sectionStyles);
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

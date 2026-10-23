@@ -8,9 +8,40 @@
     "url": "https://javierlopezdeancos.dev/"
   },
   "description": "Higgsboson scripts utils tu run across packages.",
+  "homepage": "https://higgsboson.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://codeberg.org/higgsboson/higgsboson.git",
+    "directory": "packages/utils"
+  },
+  "bugs": {
+    "url": "https://codeberg.org/higgsboson/higgsboson/issues"
+  },
+  "keywords": [
+    "higgsboson",
+    "utils",
+    "scripts",
+    "renderer",
+    "markup"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "files": [
+    "src/",
+    "README.md"
+  ],
   "config": {},
   "scripts": {
+    "build": "echo \"No build step needed for @higgsboson/utils (ships ESM source directly)\"",
     "lint": "npx eslint -c ./eslint.config.mjs src/*.mjs",
     "test": "node --test",
     "test:watch": "node --test --watch",

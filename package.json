@@ -8,6 +8,30 @@
     "url": "https://javierlopezdeancos.dev/"
   },
   "description": "Semantic classeless framework to style native components.",
+  "homepage": "https://higgsboson.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://codeberg.org/higgsboson/higgsboson.git"
+  },
+  "bugs": {
+    "url": "https://codeberg.org/higgsboson/higgsboson/issues"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "themeable",
+    "semantic",
+    "classless",
+    "components",
+    "design-system"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "workspaces": [
     "./packages/themes/*",
     "./packages/core",
@@ -40,7 +64,11 @@
     "test:utils": "npm run test --workspace packages/utils",
     "test:coverage:recap:utils": "npm run test:coverage:recap --workspace packages/utils",
     "test:coverage:report:utils": "npm run test:coverage:report --workspace packages/utils",
-    "test:watch:utils": "npm run test:watch --workspace packages/utils"
+    "test:watch:utils": "npm run test:watch --workspace packages/utils",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.0",
@@ -59,8 +87,10 @@
     "postcss-nesting": "^12.1.5",
     "postcss-preset-env": "^9.5.14",
     "postcss-reporter": "^7.1.0",
+    "standard-version": "^9.5.0",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
-    "stylelint-use-nesting": "^5.1.1"
+    "stylelint-use-nesting": "^5.1.1",
+    "jsdom": "^26.0.0"
   }
 }

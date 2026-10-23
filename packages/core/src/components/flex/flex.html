@@ -1,57 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-flex</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
-  <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
-  </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- flex template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
 
-    <% _.each(data.default, function(f, index) { %>
-      <%
-        const flexTitle = f?.title;
-        const articleStyles = getStyles(f?.styles?.article);
-        const headerStyles = getStyles(f?.styles?.header);
-        const flexTitleStyles = getStyles(f?.styles?.title?.flex);
-        const flexClasses = getClasses(f?.classes?.flex);
-        const flexStyles = getStyles(f?.styles?.flex);
-        const itemStyles = getStyles(f?.styles?.item);
-      %>
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= flexTitleStyles %>"><%= flexTitle %></h3>
-        </header>
-        <div class="<%= flexClasses %>" style="<%= flexStyles %>">
-          <div style="<%= itemStyles %>">item</div>
-          <div style="<%= itemStyles %>">item</div>
-          <div style="<%= itemStyles %>">item</div>
-        </div>
-      </article>
-    <% }) %>
-  </script>
+  <body>
+    <div id="hggs-root"></div>
+  </body>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponentDeprecated from "../../../renderComponentDeprecated.mjs";
-    import model from "./flex.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./flex-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponentDeprecated({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

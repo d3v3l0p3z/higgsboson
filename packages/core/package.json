@@ -8,7 +8,37 @@
     "url": "https://javierlopezdeancos.dev/"
   },
   "description": "Higgsboson core css classes to style native components.",
+  "homepage": "https://higgsboson.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://codeberg.org/higgsboson/higgsboson.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://codeberg.org/higgsboson/higgsboson/issues"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "themeable",
+    "semantic",
+    "classless",
+    "components",
+    "core"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/higgsboson-core.min.css",
+  "style": "dist/higgsboson-core.min.css",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
   "config": {
     "input_directory_sources_name": "src",
     "output_filename": "higgsboson-core",

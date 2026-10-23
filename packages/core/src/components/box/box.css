@@ -12,7 +12,7 @@
 
   & .hggs-box-header {
     border-bottom: var(--box-header-border-bottom, var(--hggs-border-auxiliary-gray-006-default));
-    padding: var(--box-header-padding, 0 0 0 0);
+    padding: var(--box-header-padding, 0 var(--hggs-space-default));
   }
 
   & .hggs-box-title {
@@ -21,7 +21,7 @@
   }
 
   & .hggs-box-body {
-    padding: var(--box-body-padding, var(--hggs-space-default) 0 0 0);
+    padding: var(--box-body-padding, var(--hggs-space-default));
 
     & .hggs-text {
       color: var(--box-color-primary, var(--hggs-font-color-default));
@@ -29,6 +29,10 @@
 
     & > *:first-child {
       margin-top: unset;
+    }
+
+    & > *:last-child {
+      margin-bottom: unset;
     }
   }
 

@@ -1,118 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-select</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- table template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(t) { %>
-      <%
-        const articleStyles = getStyles(t?.styles?.article);
-        const headerStyles = getStyles(t?.styles?.header);
-        const wrapperTitleStyles = getStyles(t?.styles?.titles?.wrapper);
-        const wrapperTitle = t?.titles?.wrapper;
-        const wrapperClasses = getClasses(t?.classes?.wrapper);
-        const tableTitleStyles = getStyles(t?.styles?.titles?.table);
-        const tableTitle = t?.titles?.table;
-        const tableClasses = getClasses(t?.classes?.table);
-        const theadTitleStyles = getStyles(t?.styles?.titles?.thead);
-        const theadTitle = t?.titles?.thead;
-        const theadClasses = getClasses(t?.classes?.thead);
-        const headCellTitleStyles = getStyles(t?.styles?.titles?.headCell);
-        const headCellTitle = t?.titles?.headCell;
-        const headCellClasses = getClasses(t?.classes?.headCell);
-        const tbodyTitleStyles = getStyles(t?.styles?.titles?.tbody);
-        const tbodyTitle = t?.titles?.tbody;
-        const tbodyClasses = getClasses(t?.classes?.tbody);
-        const cellTitleStyles = getStyles(t?.styles?.titles?.cell);
-        const cellTitle = t?.titles?.cell;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= wrapperTitleStyles %>">
-            <%= wrapperTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= tableTitleStyles %>">
-            <%= tableTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= theadTitleStyles %>">
-            <%= theadTitle %>
-          </h5>
-          <h6 class="hggs-h6" style="<%= headCellTitleStyles %>">
-            <%= headCellTitle %>
-          </h6>
-          <h5 class="hggs-h5" style="<%= tbodyTitleStyles %>">
-            <%= tbodyTitle %>
-          </h5>
-          <h6 class="hggs-h6" style="<%= cellTitleStyles %>">
-            <%= cellTitle %>
-          </h6>
-        </header>
-
-        <div class="<%= wrapperClasses %>">
-          <table class="<%= tableClasses %>">
-            <thead class="<%= theadClasses %>">
-              <tr>
-                <% _.each(t.data.headers, function(h) { %>
-                  <%
-                    let headerClasses = getClassesIf(h.isCapitalized, t.classes.capitalize, headCellClasses);
-                  %>
-                  <th class="<%= headerClasses %>"><%= h.label %></th>
-                <% }); %>
-              </tr>
-            </thead>
-            <tbody class="<%= tbodyClasses %>">
-              <% _.each(t.data.rows, function(r) { %>
-                <tr>
-                  <% _.each(r, function(cell) { %>
-                    <%
-                      let cellClasses = getClasses(t?.classes?.cell);
-                      cellClass = getClassesIf(cell.isBold, t.classes.bold, cellClasses);
-                      cellClass = getClassesIf(cell.isCapitalized, t.classes.capitalize, cellClasses);
-                    %>
-                    <td class="<%= cellClasses %>">
-                      <% if (cell.state) { %>
-                        <% const tagClass = getClasses(t?.classes[cell.state]); %>
-                        <div  class="<%= tagClass %>"><%= cell.label %></div>
-                      <% } else { %>
-                        <%= cell?.label %>
-                      <% } %>
-                    </td>
-                  <% }); %>
-                </tr>
-              <% }); %>
-            </tbody>
-          </table>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./table.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./table-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

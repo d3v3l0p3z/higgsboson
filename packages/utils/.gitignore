@@ -1,0 +1,7 @@
+# reports
+lcov.info
+reports
+
+#Configuration files
+.env
+.env-testing

@@ -36,62 +36,41 @@
 #### Basic HTML structure
 
 ```html
-<p class="hggs-text">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `italic` modifier
 
 ```html
-<p class="hggs-text hggs-text--italic">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--italic">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `small` modifier
 
 ```html
-<p class="hggs-text hggs-text--small">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `bold` modifier
 
 ```html
-<p class="hggs-text hggs-text--bold">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `align-center` modifier
 
 ```html
-<p class="hggs-text hggs-text--align-center">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--align-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `align-right` modifier
 
 ```html
-<p class="hggs-text hggs-text--align-right">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--align-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```
 
 #### Basic HTML structure with `balanced` modifier
 
 ```html
-<p class="hggs-text hggs-text--balanced">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod
-  sapien eget turpis lobortis rutrum.
-</p>
+<p class="hggs-text hggs-text--balanced">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod sapien eget turpis lobortis rutrum.</p>
 ```

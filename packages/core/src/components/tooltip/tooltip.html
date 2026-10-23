@@ -1,58 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-tooltip</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
 
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- tooltip template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(d) { %>
-      <%
-        const articleStyles = getStyles(d?.styles?.article);
-        const headerStyles = getStyles(d?.styles?.header);
-        const tooltipTitle = d?.titles?.tooltip;
-        const tooltipTitleStyles = getStyles(d?.styles?.titles?.tooltip);
-        const tooltipStyles = getClasses(d?.styles?.tooltip);
-        const tooltipClass = getClasses(d?.classes?.tooltip);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= tooltipTitleStyles %>">
-            <%= tooltipTitle %>
-          </h3>
-        </header>
-        <span class="<%= tooltipClass %>" style="<%= tooltipStyles %>" data-tooltip="I’m the tooltip text">
-          Hover me to see the tooltip
-        </span>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./tooltip.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./tooltip-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

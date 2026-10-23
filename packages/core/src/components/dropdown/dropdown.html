@@ -1,81 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-dropdown</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- dropdown template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(d) { %>
-      <%
-        const articleStyles = getStyles(d?.styles?.article);
-        const headerStyles = getStyles(d?.styles?.header);
-        const dropdownTitleStyles = getStyles(d?.styles?.header);
-        const dropdownTitle = d?.title;
-        const detailsDropdownClasses = getClasses(d?.classes?.details);
-        const summaryDropdownClasses = getClasses(d?.classes?.summary);
-        const optionsDropdownClasses = getClasses(d?.classes?.ul);
-      %>
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= dropdownTitleStyles %>">
-            <%= dropdownTitle %>
-          </h3>
-        </header>
-
-        <details class="<%= detailsDropdownClasses %>">
-          <summary class="<%= summaryDropdownClasses %>">
-            <% _.each(d.ids.input, function(o, index) { %>
-              <% const inputDropdownClasses = getClasses(d.classes.input); %>
-
-              <% if (index === 0 ) { %>
-                <input class="<%= inputDropdownClasses %>" type="radio" name="<%= d.names.input[index] %>" id="<%= d.ids.input[index] %>" title="<%= d.labels.options[index] %>" checked>
-              <% } else { %>
-                <input class="<%= inputDropdownClasses %>" type="radio" name="<%= d.names.input[index] %>" id="<%= d.ids.input[index] %>" title="<%= d.labels.options[index] %>">
-              <% } %>
-            <% }) %>
-          </summary>
-          <ul class="<%= optionsDropdownClasses %>">
-            <% _.each(d.ids.input, function(o, index) { %>
-              <%
-                const optionDropdownClasses = getClasses(d.classes.li);
-                const labelDropdownClasses = getClasses(d.classes.label);
-              %>
-              <li class="<%= optionDropdownClasses %>">
-                <label class="<%= labelDropdownClasses %>" for="<%= d.ids.input[index] %>">
-                  <%= d.labels.options[index] %>
-                </label>
-              </li>
-            <% }) %>
-          </ul>
-        </details>
-      </article>
-      <% }) %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./dropdown.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./dropdown-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

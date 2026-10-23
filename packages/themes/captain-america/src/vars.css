@@ -362,6 +362,9 @@
 
   /* TRANSITIONS */
   --hggs-transition-ease: 0.3s ease;
+
+  /* LOGO */
+  --hggs-logo: url("./assets/svg/hggs-theme-captain-america-logo-light.svg");
 }
 
 /* DARK MODE */
@@ -435,6 +438,6 @@
     --hggs-shadow: 0 0 1px 6px var(--hggs-color-gray-001);
 
     /* LOGO */
-    --hggs-logo-default: url("./assets/svg/logo-dark.svg");
+    --hggs-logo: url("./assets/svg/hggs-theme-captain-america-logo-dark.svg");
   }
 }

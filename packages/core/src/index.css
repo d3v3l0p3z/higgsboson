@@ -1,5 +1,5 @@
 /* THEME */
-@import url("./default-theme/index.css");
+@import url("./theme/index.css");
 
 /* COMPONENTS */
 @import url("./components/flex/flex.css");

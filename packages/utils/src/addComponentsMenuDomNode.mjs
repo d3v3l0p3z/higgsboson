@@ -9,6 +9,7 @@ function getComponentsMenuItemDomNode(menuItem) {
 
   if (menuItem?.new) {
     const componentMenuItemNewNode = document.createElement("span");
+
     componentMenuItemNewNode.classList = "hggs-tag hggs-tag--small hggs-tag--secondary hggs-tag--rounded";
     componentMenuItemLinkNode.innerHTML = "new";
     componentMenuItemNode.appendChild(componentMenuItemNewNode);

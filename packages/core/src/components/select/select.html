@@ -1,77 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-select</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
 
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- select template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(s) { %>
-      <%
-        const articleStyles = getStyles(s?.styles?.article);
-        const headerStyles = getStyles(s?.styles?.header);
-        const wrapperTitleStyles = getStyles(s?.styles?.titles?.wrapper);
-        const wrapperTitle = s?.titles?.wrapper;
-        const selectTitleStyles = getStyles(s?.styles?.titles?.select);
-        const selectTitle = s?.titles?.select;
-        const iconTitleStyles = getStyles(s?.styles?.titles?.icon);
-        const iconTitle = s?.titles?.icon;
-        const wrapperClasses = getClasses(s?.classes?.wrapper);
-        const selectClasses = getClasses(s?.classes?.select);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= wrapperTitleStyles %>">
-            <%= wrapperTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= selectTitleStyles %>">
-            <%= selectTitle %>
-          </h4>
-          <h4 class="hggs-h4" style="<%= iconTitleStyles %>">
-            <%= iconTitle %>
-          </h4>
-        </header>
-        <div class="<%= wrapperClasses %>">
-          <select class="<%= selectClasses %>" name="pets">
-            <option class="hggs-option" value="">Please choose an option</option>
-            <option class="hggs-option" value="dog">Dog</option>
-            <option class="hggs-option" value="cat">Cat</option>
-            <option class="hggs-option" value="hamster">Hamster</option>
-            <option class="hggs-option" value="parrot">Parrot</option>
-            <option class="hggs-option" value="spider">Spider</option>
-            <option class="hggs-option" value="goldfish">Goldfish</option>
-          </select>
-          <span class="hggs-icon hggs-icon--chevron-down"></span>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./select.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./select-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

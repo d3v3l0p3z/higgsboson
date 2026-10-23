@@ -1,66 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hggs-blockquote</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hggs-text</title>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
-</head>
+  <body>
+    <div id="hggs-root"></div>
+  </body>
+  <!-- render component -->
+  <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
+    import getConfiguration from "../../../getConfiguration.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./blockquote-model.mjs";
 
-<body>
-  <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
-</body>
-<!-- add global helpers -->
-<script type="module">
-  import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-  setGlobalHelpers();
-</script>
-<!-- text template -->
-<script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
+    const configuration = await getConfiguration("../../../");
 
-    <% _.each(data.default, function(b) { %>
-      <%
-        const articleStyles = getStyles(b?.styles?.article);
-        const headerStyles = getStyles(b?.styles?.header);
-        const blockquoteTitleStyles = getStyles(b?.styles?.titles?.blockquote);
-        const textTitleStyles = getStyles(b?.styles?.titles?.text);
-        const blockquoteTitle = b?.titles?.blockquote;
-        const blockquoteClasses = getClasses(b?.classes?.blockquote);
-        const textTitle = b?.titles?.text;
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= blockquoteTitleStyles %>">
-            <%= blockquoteTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= textTitleStyles %>">
-            <%= textTitle %>
-          </h4>
-        </header>
-        <blockquote class="<%= blockquoteClasses %>">
-           <p class="hggs-text">
-          Chanante ipsum dolor sit amet, soooy crossoverr nisi forrondosco dolore ahí va qué chorrazo chotera eveniet atiendee. Chachachá ut a tope con la maquinaria, zagal gambitero ea sed enratonao pepinoninoni saepe. Coconut estoy fatal de lo mío adipisicing cabeza de viejo cuerpo de joven chavalada eiusmod to sueltecico enjuto mojamuto bonico del tó. Cascoporro con las rodillas in the guanter piticli vivo con tu madre en un castillo freshquisimo ayy qué gustico tontaco. Asquerosito aliqua eres un pirámidee ojete calor ea agazapao. Churretoso nuiiiii exercitation pero qué pelazo monguer Guaper interneeeer melifluo droja payacho mamellas.
-        </p>
-        </blockquote>
-      </article>
-    <% }); %>
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
-<!-- render component -->
-<script type="module">
-  import getConfiguration from "../../../getConfiguration.mjs";
-  import renderComponent from "../../../renderComponent.mjs";
-  import model from "./blockquote.mjs";
-
-  const configuration = await getConfiguration("../../../");
-
-  renderComponent({
-    model,
-    configuration
-  });
-</script>
-
 </html>

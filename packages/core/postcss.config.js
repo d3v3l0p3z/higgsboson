@@ -8,11 +8,7 @@ const minify = require("cssnano");
 const reporter = require("postcss-reporter");
 
 function pathTransform(newPath) {
-  const newPathSlots = newPath.split("/");
-  const newPathSlotsWithoutDefaultThemeSlot = newPathSlots.filter((s) => s !== "default-theme");
-  const newPathWithoutDefaultThemeSlot = newPathSlotsWithoutDefaultThemeSlot.join("/");
-
-  return newPathWithoutDefaultThemeSlot;
+  return newPath.replace("theme/", "");
 }
 
 module.exports = (ctx) => ({

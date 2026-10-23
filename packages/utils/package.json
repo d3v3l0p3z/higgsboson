@@ -7,8 +7,21 @@
     "email": "javierlopezdeancos@outlook.com",
     "url": "https://javierlopezdeancos.dev/"
   },
-  "description": "Higgsboson scripts utils tu run across packages.",
+  "description": "Higgsboson scripts utils to run across packages.",
   "main": "src/index.mjs",
-  "config": {},
-  "scripts": {}
+  "scripts": {
+    "test": "node --env-file=./.env --test",
+    "test:watch": "node --env-file=./.env --test --watch",
+    "mocks:update": "node ./src/updateMocks.mjs",
+    "test:coverage:recap": "node --env-file=./.env --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
+    "test:coverage:report": "lcov-viewer lcov -o ./reports ./lcov.info",
+    "format": "prettier --write src/**/*.mjs",
+    "lint": "eslint src/**/*.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "eslint": "^9.16.0",
+    "jsdom": "^25.0.1",
+    "prettier": "3.5.3"
+  }
 }

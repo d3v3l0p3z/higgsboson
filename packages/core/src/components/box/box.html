@@ -1,145 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-box</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- box template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default box -->
-
-    <% _.each(data.default, function(b) { %>
-      <%
-        const articleStyles = getStyles(b?.styles?.article);
-        const headerStyles = getStyles(b?.styles?.header);
-        const boxStyles = getStyles(b?.styles?.box);
-        const boxTitle = b?.titles?.box;
-        const headerTitle = b?.titles?.header;
-        const titleTitle = b?.titles?.title;
-        const bodyTitle = b?.titles?.body;
-        const boxTitleStyles = getStyles(b?.styles?.titles?.box);
-        const headerTitleStyles = getStyles(b?.styles?.titles?.header);
-        const titleTitleStyles = getStyles(b?.styles?.titles?.title);
-        const bodyTitleStyles = getStyles(b?.styles?.titles?.body);
-        const boxClass = getClasses(b?.classes?.box);
-        const boxHeaderClasses = getClasses(b?.classes?.boxHeader);
-        const boxHeaderTitleClasses = getClasses(b?.classes?.boxTitle);
-        const boxBodyClasses = getClasses(b?.classes?.boxBody);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= boxTitleStyles %>">
-            <%= boxTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= headerTitleStyles %>">
-            <%= headerTitle %>
-          </h4>
-          <h5 class="hggs-h4" style="<%= titleTitleStyles %>">
-            <%= titleTitle %>
-          </h5>
-          <h4 class="hggs-h4" style="<%= bodyTitleStyles %>">
-            <%= bodyTitle %>
-          </h4>
-        </header>
-
-        <div class="<%= boxClass %>" style="<%= boxStyles %>" />
-          <% if(headerTitle && titleTitle) { %>
-            <header class="<%= boxHeaderClasses %>">
-              <h3 class="<%= boxHeaderTitleClasses %>">Title</h3>
-            </header>
-          <% } %>
-          <% if(bodyTitle) { %>
-            <section class="<%= boxBodyClasses %>">
-              <p class="hggs-text">
-              Chanante ipsum dolor sit amet, soooy crossoverr nisi forrondosco dolore ahí va qué chorrazo chotera eveniet atiendee. Chachachá ut a tope con la maquinaria, zagal gambitero ea sed enratonao pepinoninoni saepe. Coconut estoy fatal de lo mío adipisicing cabeza de viejo cuerpo de joven chavalada eiusmod to sueltecico enjuto mojamuto bonico del tó. Cascoporro con las rodillas in the guanter piticli vivo con tu madre en un castillo freshquisimo ayy qué gustico tontaco. Asquerosito aliqua eres un pirámidee ojete calor ea agazapao. Churretoso nuiiiii exercitation pero qué pelazo monguer Guaper interneeeer melifluo droja payacho mamellas.
-              </p>
-            </section>
-          <% } %>
-        </div>
-      </article>
-    <% }); %>
-
-    <!-- primary box -->
-
-    <% _.each(data.primary, function(b) { %>
-
-      <%
-        const articleStyles = getStyles(b?.styles?.article);
-        const headerStyles = getStyles(b?.styles?.header);
-        const boxTitle = b?.titles?.box;
-        const headerTitle = b?.titles?.header;
-        const titleTitle = b?.titles?.title;
-        const bodyTitle = b?.titles?.body;
-        const boxTitleStyles = getStyles(b?.styles?.titles?.box);
-        const headerTitleStyles = getStyles(b?.styles?.titles?.header);
-        const titleTitleStyles = getStyles(b?.styles?.titles?.title);
-        const bodyTitleStyles = getStyles(b?.styles?.titles?.body);
-        const boxClass = getClasses(b?.classes?.box);
-        const boxHeaderClasses = getClasses(b?.classes?.boxHeader);
-        const boxHeaderTitleClasses = getClasses(b?.classes?.boxTitle);
-        const boxBodyClasses = getClasses(b?.classes?.boxBody);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= boxTitleStyles %>">
-            <%= boxTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= headerTitleStyles %>">
-            <%= headerTitle %>
-          </h4>
-          <h5 class="hggs-h4" style="<%= titleTitleStyles %>">
-            <%= titleTitle %>
-          </h5>
-          <h4 class="hggs-h4" style="<%= bodyTitleStyles %>">
-            <%= bodyTitle %>
-          </h4>
-        </header>
-
-        <div class="<%= boxClass %>" style="<%= boxStyles %>" />
-          <% if(headerTitle && titleTitle) { %>
-            <header class="<%= boxHeaderClasses %>">
-              <h3 class="<%= boxHeaderTitleClasses %>">Title</h3>
-            </header>
-          <% } %>
-          <% if(bodyTitle) { %>
-            <section class="<%= boxBodyClasses %>">
-              <p class="hggs-text">
-              Chanante ipsum dolor sit amet, soooy crossoverr nisi forrondosco dolore ahí va qué chorrazo chotera eveniet atiendee. Chachachá ut a tope con la maquinaria, zagal gambitero ea sed enratonao pepinoninoni saepe. Coconut estoy fatal de lo mío adipisicing cabeza de viejo cuerpo de joven chavalada eiusmod to sueltecico enjuto mojamuto bonico del tó. Cascoporro con las rodillas in the guanter piticli vivo con tu madre en un castillo freshquisimo ayy qué gustico tontaco. Asquerosito aliqua eres un pirámidee ojete calor ea agazapao. Churretoso nuiiiii exercitation pero qué pelazo monguer Guaper interneeeer melifluo droja payacho mamellas.
-              </p>
-            </section>
-          <% } %>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import setGlobal from "../../../setGlobal.mjs";
-    import model, { boxStyles } from "./box.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./box-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    setGlobal("boxStyles",boxStyles);
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

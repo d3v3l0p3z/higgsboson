@@ -1,55 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-label</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
-  <body id="body" class="hggs-app hggs-app--left" style="width: 100vw; height: 100vh; padding: 30px"></body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- avatar template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
 
-    <!-- default label -->
-
-    <% _.each(data.default, function(l) { %>
-      <%
-        const articleStyles = getStyles(l?.styles?.article);
-        const headerStyles = getStyles(l?.styles?.header);
-        const labelTitleStyle = getStyles(l?.styles?.titles?.label);
-        const labelTitle = l?.titles?.label;
-        const labelClasses = getClasses(l?.classes?.label);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= labelTitleStyle %>">
-            <%= labelTitle %>
-          </h3>
-        </header>
-
-        <label for="id-test" class="<%= labelClasses %>">Label</label>
-      </article>
-    <% }); %>
-  </script>
+  <body>
+    <div id="hggs-root"></div>
+  </body>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./label.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./label-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

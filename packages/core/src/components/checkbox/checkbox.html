@@ -1,109 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-checkbox</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- checkbox template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- default checkbox -->
-    <% _.each(data?.default, function(c) { %>
-      <%
-        const articleStyles = getStyles(c?.styles?.article);
-        const headerStyles = getStyles(c?.styles?.header);
-        const checkboxTitleStyles = getStyles(c?.styles?.titles?.checkbox);
-        const checkboxWrapperClass = getClasses(c?.classes?.wrapper);
-        const checkboxTitle = c?.titles?.checkbox;
-        const checkboxLabelClass = getClasses(c?.classes?.label);
-        const labelTitle = c?.titles?.label;
-        const labelTitleStyles = getStyles(c?.styles?.titles.label);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= checkboxTitleStyles %>">
-            <%= checkboxTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= labelTitleStyles %>">
-            <%= labelTitle %>
-          </h4>
-        </header>
-        <div class="<%= checkboxWrapperClass %>">
-          <input type="checkbox" id="checkbox1" name="checkboxgroup" />
-          <label class="<%= checkboxLabelClass %>" for="checkbox1">Option 1</label>
-        </div>
-      </article>
-    <% }); %>
-
-    <!-- checkboxes -->
-    <% _.each(data.list, function(cs) { %>
-      <%
-        const articleStyles = getStyles(cs?.styles?.article);
-        const headerStyles = getStyles(cs?.styles?.header);
-        const checkboxesTitleStyles = getStyles(cs?.styles?.titles?.checkboxes);
-        const checkboxTitleStyles = getStyles(cs?.styles?.titles?.checkbox);
-        const labelTitleStyles = getStyles(cs?.styles?.titles?.label);
-        const checkboxesTitle = cs?.titles?.checkboxes;
-        const checkboxTitle = cs?.titles?.checkbox;
-        const labelTitle = cs?.titles?.label;
-        const checkboxesListClass = cs.classes.list;
-        const checkboxWrapperClass = getClasses(cs.classes.wrapper);
-        const checkboxLabelClass = getClasses(cs.classes.label);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= checkboxesTitleStyles %>">
-            <%= checkboxesTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= checkboxTitleStyles %>">
-            <%= checkboxTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= labelTitleStyles %>">
-            <%= labelTitle %>
-          </h5>
-        </header>
-        <div class="<%= checkboxesListClass %>">
-          <div class="<%= checkboxWrapperClass %>">
-            <input type="checkbox" id="checkbox1" name="checkboxgroup" />
-            <label class="<%= checkboxLabelClass %>" for="checkbox1">Option 1</label>
-          </div>
-          <div class="<%= checkboxWrapperClass %>">
-            <input type="checkbox" id="checkbox2" name="checkboxgroup" />
-            <label class="<%= checkboxLabelClass %>" for="checkbox2">Option 2</label>
-          </div>
-          <div class="<%= checkboxWrapperClass %>">
-            <input type="checkbox" id="checkbox3" name="checkboxgroup" />
-            <label class="<%= checkboxLabelClass %>" for="checkbox3">Option 3</label>
-          </div>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./checkbox.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./checkbox-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

@@ -1,80 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-radio</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
 
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- radio template -->
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <% _.each(data.default, function(r) { %>
-      <%
-        const articleStyles = getStyles(r?.styles?.article);
-        const headerStyles = getStyles(r?.styles?.header);
-        const radiosTitleStyles = getStyles(r?.styles?.titles?.radios);
-        const radiosTitle = r?.titles?.radios;
-        const radiosClasses = getClasses(r?.classes?.radios);
-        const radioTitleStyles = getStyles(r?.styles?.titles?.radio);
-        const radioTitle = r?.titles?.radio;
-        const radioClasses = getClasses(r?.classes?.radio);
-        const inputTitleStyles = getStyles(r?.styles?.titles?.input);
-        const inputTitle = r?.titles?.input;
-        const labelTitleStyles = getStyles(r?.styles?.titles?.label);
-        const labelTitle = r?.titles?.label;
-        const labelClasses = getClasses(r?.classes?.label);
-      %>
-
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= radiosTitleStyles %>">
-            <%= radiosTitle %>
-          </h3>
-          <h4 class="hggs-h4" style="<%= radioTitleStyles %>">
-            <%= radioTitle %>
-          </h4>
-          <h5 class="hggs-h5" style="<%= inputTitleStyles %>">
-            <%= inputTitle %>
-          </h5>
-          <h5 class="hggs-h5" style="<%= labelTitleStyles %>">
-            <%= labelTitle %>
-          </h5>
-        </header>
-        <div class="<%= radiosClasses %>">
-          <% _.each(r.options, function(o) { %>
-            <div class="<%= radioClasses %>">
-              <input type="radio" id="<%= o.id %>" name="radiogroup" />
-              <span></span>
-              <label class="<%= labelClasses %>" for="<%= o.id %>"><%= o.label %></label>
-            </div>
-          <% }); %>
-        </div>
-      </article>
-    <% }); %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./radio.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./radio-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

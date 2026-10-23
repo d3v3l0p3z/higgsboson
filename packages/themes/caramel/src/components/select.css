@@ -9,7 +9,7 @@
   --select-font-family: var(--hggs-font-family);
   --select-font-size: var(--hggs-font-size);
   --select-height: var(--hggs-form-input-height);
-  --select-open-icon-top: 25%;
+  --select-open-icon-top: 15%;
   --select-open-icon-right: var(--hggs-space-horizontal);
   --select-padding: var(--hggs-form-input-padding);
 }

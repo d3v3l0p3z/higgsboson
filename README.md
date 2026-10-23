@@ -6,6 +6,7 @@
 Higgsboson is a themeable semantic classeless framework to style core native components.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Issues](https://img.shields.io/github/issues/developez404/higgsboson?style=flat-square)](https://github.com/developez404/higgsboson/issues)
 [![Stage - Alpha](https://img.shields.io/badge/Stage-Alpha-f9f504)](https://)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
@@ -66,8 +67,8 @@ Higgsboson is a themeable semantic classeless framework to style core native com
 
 ## What is next
 
-Take a look into the active [project board](https://github.com/users/javierlopezdeancos/projects/3/views/2)
-or more deeper view in [issues](https://github.com/javierlopezdeancos/higgsboson/issues).
+Take a look into the active [project board](https://github.com/users/developez404/projects/3/views/2)
+or more deeper view in [issues](https://github.com/developez404/higgsboson/issues).
 
 ## Why Higgsboson?
 
@@ -93,7 +94,7 @@ Higgsboson
       ├─ core
       │   ├─ src
       │     ├─ components
-      │     ├─ default-theme
+      │     ├─ theme
       │
       ├─ themes
       │  ├─ captain-america
@@ -109,7 +110,7 @@ Higssboson has different packages that has their own workspace. Those packages a
 
 #### Core
 
-Core package contains the core library and the `default-theme`. Building the core package you will use Higgsboson with the default theme.
+Core package contains the core library and the default `theme`. Building the core package you will use Higgsboson with the default theme.
 
 ##### Core folder file structure
 
@@ -117,9 +118,9 @@ Core package contains the core library and the `default-theme`. Building the cor
 ├─ core
     ├─ src
        ├─ components
-       ├─ default-theme
+       ├─ theme
            ├─ assets
-           ├─ default.css
+           ├─ vars.css
            ├─ index.css
            ├─ resets.css
 ```
@@ -130,11 +131,11 @@ Core package contains the core library and the `default-theme`. Building the cor
 
 Folder to allocate different kind of assets as images, svgs, fonts, icons etc to the default theme.
 
-###### default.css
+###### vars.css
 
-Theme default has variables as fallback to each `core-component-tokens` to each core component.
+The default theme has variables as fallback to each `core-component-tokens` to each core component.
 
-Higgsboson themes just works with css standard custom variables but we would like to calls this entire concept `default tokens`.
+Higgsboson themes just works with css standard custom variables but we would like to call this entire concept `core-components-tokens`.
 
 ```css
 --theme-token-a-default: #FFFFFF;
@@ -145,7 +146,7 @@ Higgsboson themes just works with css standard custom variables but we would lik
 --theme-token-n-default: 1px solid var(--theme-token-a);
 ```
 
-**default tokens convention name**
+**default core components tokens convention name**
 
 > [!WARNING]
 > Take care here, in the same way that I will explain that for each `theme tokens` you can use the naming convention that you want, in this case, you must follow the existing naming convention.
@@ -175,7 +176,7 @@ All available core components defined from their selectors, properties and value
 ###### Components docs
 
 - [Avatar](/packages/core/src/components/avatar/avatar.md)
-- [Avatars](/packages/core/src/components/avatar/avatars.md)
+- [Avatars](/packages/core/src/components/avatars/avatars.md)
 - [Blockquote](/packages/core/src/components/blockquote/blockquote.md)
 - [Box](/packages/core/src/components/box/box.md)
 - [Button](/packages/core/src/components/buttons/buttons.md)
@@ -526,51 +527,30 @@ However, for consistency, we describe here what our ideal folder structure and v
 
 ###### Complete graph of the ideal higgsboson flow
 
-```
-                               THEME
-                            ┌──────────────────────────────────────────────────────┐
-                            │                                                      │
-                            │                ┌───────────────────────────┐         │
-                            │                │                           │         │
-                            │                │                           │         │
-                            │                │       theme vars          │         │
-                            │                │     │             │       │         │
-                            │                └─────┼─────────────┼───────┘         │
-                            │                      │             │                 │
-                            │                ┌─────┼──────┐ ┌────┼───────┐         │
-                            │                │     │      │ │    │       │         │
-                            │                │     ▼      │ │    ▼       │         │
-                            │                │ ComponentA │ │ ComponentB │         │
-                            └──────────────  │ theme      │ │ theme      ├─────────┘
-                                             │ values     │ │ values     │
-                                             │    │       │ │    │       │
-                                             └────┼───────┘ └────┼───────┘
-                                                  │              │
-                                             ┌────┼───────┐ ┌────┼───────┐
-                                             │    │       │ │    │       │
-  CORE                                       │    ▼       │ │    ▼       │
- ┌───────────────────────────────────────────┤ ComponentA │ │ ComponentB ├─────────┐
- │                                           │ theme      │ │ theme      │         │
- │                                           │ properties │ │ properties │         │
- │                                           │    │       │ │     │      │         │
- │                                           └────┼───────┘ └─────┼──────┘         │
- │                                                │               │                │
- │                                  ┌─────────────┼───────┐ ┌─────┼──────────────┐ │
- │                                  │             │       │ │     │              │ │
- │   ┌───────────────────────────┐  │             │       │ │     │              │ │
- │   │                           │  │             ▼       │ │     ▼              │ │
- │   │                     ┌─────┼──┼───────►             │ │                    │ │
- │   │      default vars   │     │  │    COMPONENT A      │ │    COMPONENT B     │ │
- │   │                     │     │  │                     │ │                    │ │
- │   └─────────────────────┼─────┘  │                     │ │        ▲           │ │
- │                         │        │                     │ │        │           │ │
- │                         │        └─────────────────────┘ └────────┼───────────┘ │
- │                         │                                         │             │
- │                         │                                         │             │
- │                         │                                         │             │
- │                         └─────────────────────────────────────────┘             │
- │                                                                                 │
- └─────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph THEME["THEME"]
+        TV["theme vars"]
+        CAV["Component A theme values"]
+        CBV["Component B theme values"]
+        CAP["Component A theme properties"]
+        CBP["Component B theme properties"]
+        TV --> CAV
+        TV --> CBV
+        CAV --> CAP
+        CBV --> CBP
+    end
+
+    subgraph CORE["CORE"]
+        DV["default vars"]
+        CA["COMPONENT A"]
+        CB["COMPONENT B"]
+        DV --> CA
+        DV --> CB
+    end
+
+    CAP --> CA
+    CBP --> CB
 ```
 
 ##### Dev a theme
@@ -632,6 +612,57 @@ d css code
 - [cssnano](https://cssnano.co/)
 
 ### Development
+
+#### Development Playground
+
+##### Component model
+
+The component model is a javascript Object that describes the structure of a component running in our dev playground. It is used to generate the HTML and CSS for the component.
+
+> [!TIP]
+> Take a look to [component.mjs](#componentamjs) file section to see where you should place it.
+
+This object will describe use cases for the component in terms of CSS classes that will be applied to the component.
+
+See here some example of a component model structure in `javascript`:
+
+```javascript
+const componentModel = {
+  title: 'Box',
+  classes: {
+    structure: {
+      values: ['hggs-box'],
+      next: [
+        {
+          values: ['hggs-box-header'],
+          next: [{
+            values: ['hggs-box-title', 'hggs-h4'],
+            next: null
+          }]
+        },
+        {
+          values: ['hggs-box-body'],
+          next: null
+        }
+      ]
+    },
+    modifiers: {
+      "0": { // Level 0 in the structure
+        values: ['hggs-list--marker'],
+        type: "individual"  // Can be `individual` or `grouped`
+      }
+    }
+  }
+};
+```
+
+> [!IMPORTANT]
+> For the `modifiers` property we can apply them as `individual` or `grouped`.
+>
+> 1. If we apply them as `individual`, it means that the engine will render the `structure` for each of the individuals per defined level.
+> 2. If we apply them as `grouped`, it means that the engine will only render the `structure` once applying all `modifiers` once at the specified level.
+
+##### Run development playground
 
 Then to develop purposes we need run one of this scripts:
 

@@ -17,7 +17,7 @@
 
 ## Component variables
 
-```
+```css
 --select-border
 --select-border-focus
 --select-border-radius

@@ -6,7 +6,7 @@
     var(--button-margin-vertical, var(--hggs-space-default))
     var(--button-margin-horizontal, var(--hggs-space-xs-default));
   font-size: var(--button-font-size-medium, var(--hggs-font-size-default));
-  font-family: var(--button-font-family, var(--hggs-font-family));
+  font-family: var(--button-font-family, var(--hggs-font-family-default));
   font-weight: var(--button-font-weight, var(--hggs-font-weight-default));
   color: var(--button-color, var(--hggs-color-quinary-default));
   letter-spacing: var(--button-font-letter-spacing);

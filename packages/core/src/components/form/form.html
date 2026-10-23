@@ -1,109 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hggs-form</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
   </head>
+
   <body>
-    <div id="body" class="hggs-app hggs-app--left" style="width: 100%; height: 100%; padding: 30px"></div>
+    <div id="hggs-root"></div>
   </body>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <!-- add global helpers -->
-  <script type="module">
-    import setGlobalHelpers from "../../../setGlobalHelpers.mjs";
-    setGlobalHelpers();
-  </script>
-  <script id="template" type="text/template">
-    <h1 class="hggs-h1" style="margin-top: 0"><%= data.title %></h1>
-
-    <!-- two inputs form -->
-
-    <% _.each(data.twoInputs, function(f, index) { %>
-      <%
-        const articleStyles = getStyles(f?.styles?.article);
-        const headerStyles = getStyles(f?.styles?.header);
-        const formTitle = f?.titles?.form;
-        const formTitleStyles = getStyles(f?.styles?.titles?.form);
-        const inputOneTitleStyles = getStyles(f?.styles?.titles?.inputOne);
-        const inputTwoTitleStyles = getStyles(f?.styles?.titles?.inputTwo);
-        const inputTitle = f?.titles?.input;
-        const inputClasses = getClasses(f?.classes?.input);
-        const formClasses = getClasses(f?.classes?.form);
-      %>
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= formTitleStyles %>"><%= formTitle %></h3>
-          <h4 class="hggs-h4" style="<%= inputOneTitleStyles %>"><%= inputTitle %></h4>
-          <h4 class="hggs-h4" style="<%= inputTwoTitleStyles %>"><%= inputTitle %></h4>
-        </header>
-
-        <form class="<%= formClasses %>">
-          <input type="test" class="<%= inputClasses %>" />
-          <input type="test" class="<%= inputClasses %>" />
-        </form>
-      </article>
-    <% }) %>
-
-    <!-- two fields form -->
-
-    <% _.each(data.twoFields, function(f, index) { %>
-      <%
-        const articleStyles = getStyles(f?.styles?.article);
-        const headerStyles = getStyles(f?.styles?.header);
-        const formTitle = f?.titles?.form;
-        const formTitleStyles = getStyles(f?.styles?.titles?.form);
-        const formClasses = getClasses(f?.classes?.form);
-        const fieldTitle = f?.titles?.field;
-        const fieldTitleStyles = getStyles(f?.styles?.titles?.field);
-        const fieldClasses = getClasses(f?.classes?.field);
-        const labelTitleStyles = getStyles(f?.styles?.titles?.label);
-        const labelTitle = f?.titles?.label;
-        const labelClasses = getClasses(f?.classes?.label);
-        const inputTitleStyles = getStyles(f?.styles?.titles?.input);
-        const inputTitle = f?.titles?.input;
-        const inputClasses = getClasses(f?.classes?.input);
-      %>
-      <article style="<%= articleStyles %>">
-        <header style="<%= headerStyles %>">
-          <h3 class="hggs-h3" style="<%= formTitleStyles %>"><%= formTitle %></h3>
-          <% _.each([0, 1], function() { %>
-            <h4 class="hggs-h4" style="<%= fieldTitleStyles %>"><%= fieldTitle %></h4>
-            <h4 class="hggs-h5" style="<%= labelTitleStyles %>"><%= labelTitle %></h5>
-            <h4 class="hggs-h5" style="<%= labelTitleStyles %>"><%= inputTitle %></h5>
-          <% }) %>
-        </header>
-
-        <form class="<%= formClasses %>">
-          <div class="<%= fieldClasses %>">
-            <label for="id-test" class="<%= labelClasses %>">Label</label>
-            <input type="test" class="<%= inputClasses %>" />
-          </div>
-          <div class="<%= fieldClasses %>">
-            <label for="id-test" class="<%= labelClasses %>">Label</label>
-            <input type="test" class="<%= inputClasses %>" />
-          </div>
-        </form>
-      </article>
-    <% }) %>
-  </script>
   <!-- render component -->
   <script type="module">
+    import addMarkupHeaders from "../../../addMarkupHeaders.mjs";
     import getConfiguration from "../../../getConfiguration.mjs";
-    import renderComponent from "../../../renderComponent.mjs";
-    import model from "./form.mjs";
+    import loadThemeStyles from "../../../loadThemeStyles.mjs";
+    import render from "../../../render.mjs";
+    import model from "./form-model.mjs";
 
     const configuration = await getConfiguration("../../../");
 
-    renderComponent({
-      model,
-      configuration
-    });
+    render(model);
+    addMarkupHeaders(model);
+    loadThemeStyles(configuration);
   </script>
 </html>

@@ -113,12 +113,11 @@
         font-family: var(--dropdown-option-label-font-family, var(--hggs-font-family-default));
         font-size: var(--dropdown-option-label-font-size, var(--hggs-font-size-default));
         color: var(--dropdown-option-label-color, var(--hggs-color-default));
-        padding:
-          var(
-            --dropdown-option-label-padding,
-            var(--hggs-space-xs-default) var(--hggs-space-sm-default) var(--hggs-space-xs-default)
+        padding: var(
+          --dropdown-option-label-padding,
+          var(--hggs-space-xs-default) var(--hggs-space-sm-default) var(--hggs-space-xs-default)
             var(--hggs-space-sm-default)
-          );
+        );
       }
 
       &:hover {

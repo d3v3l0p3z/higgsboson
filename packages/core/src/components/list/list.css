@@ -13,12 +13,14 @@
   }
 
   & .hggs-list-item {
-    &::marker {
-      content: var(--list-item-content-marker, counter(list-item) ".   ", counter(list-item));
-      color: var(--list-item-color-marker, var(--hggs-color-default));
-      font-family: var(--list-item-font-family-marker, var(--hggs-font-family-default));
-      font-size: var(--list-item-font-size-marker, var(--hggs-font-size-default));
-      font-weight: var(--list-item-font-weight-marker, var(--hggs-font-weight-default));
+    &.hggs-list--marker {
+      &::marker {
+        content: var(--list-item-content-marker, counter(list-item) ".   ", counter(list-item));
+        color: var(--list-item-color-marker, var(--hggs-color-default));
+        font-family: var(--list-item-font-family-marker, var(--hggs-font-family-default));
+        font-size: var(--list-item-font-size-marker, var(--hggs-font-size-default));
+        font-weight: var(--list-item-font-weight-marker, var(--hggs-font-weight-default));
+      }
     }
   }
 }

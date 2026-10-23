@@ -16,7 +16,7 @@
 
 ## Component variables
 
-```
+```css
 --field-label-after-color-required
 --field-label-after-margin-left-required
 --field-label-margin-bottom

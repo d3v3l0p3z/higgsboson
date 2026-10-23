@@ -1,9 +1,7 @@
 .hggs-logo {
-  --logo-url: url("./assets/svg/logo.svg");
+  --logo-url: var(--hggs-logo);
   --logo-width: calc(var(--hggs-space-lg) * 10);
   --logo-height: var(--logo-width);
   --logo-width-small: calc(var(--hggs-space-xs) * 10);
   --logo-height-small: var(--logo-width-small);
-  --logo-url-light: url("./assets/svg/logo-dark.svg");
-  --logo-url-dark: url("./assets/svg/logo-light.svg");
 }

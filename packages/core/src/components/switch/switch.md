@@ -56,7 +56,7 @@
 
 ```html
 <div class="hggs-switch">
-  <input type="checkbox" id="switch">
+  <input type="checkbox" id="switch" />
   <label for="switch">Switch</label>
   <label class="hggs-label" for="switch">Active Superpowers</label>
 </div>

@@ -81,7 +81,16 @@ echo "v24.22.1" > .nvmrc
 
 Replace `v24.22.1` with the exact version you installed.
 
-### 6. Verify the installation
+### 6. Upgrade npm to 12+ (required for `npm stage publish/promote`)
+
+Node 24 LTS ships with npm 11.x. The `npm stage publish/promote` commands require npm 12+. Upgrade manually:
+
+```bash
+npm install -g npm@12
+npm --version  # should print 12.x.x
+```
+
+### 7. Verify the installation
 ```bash
 node --version          # should match .nvmrc
 npm --version           # should be bundled npm for that Node

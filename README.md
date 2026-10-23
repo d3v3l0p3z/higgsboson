@@ -671,6 +671,14 @@ npm install @higgsboson/core @higgsboson/theme-caramel
    ```
 
    **Staged publish** (stage-only token, requires npm 12+):
+
+   **Note:** `npm stage publish/promote` requires npm 12+. Node 24 LTS ships with npm 11.x — upgrade manually:
+
+   ```bash
+   npm install -g npm@12
+   npm --version  # should print 12.x.x
+   ```
+
    ```bash
    # Stage all packages
    npm run publish:stage:all

@@ -182,6 +182,13 @@ npm view node dist-tags --json
 # Compare with .nvmrc
 ```
 
+**Note:** `npm stage publish/promote` requires **npm 12+**. Node 24 LTS ships with npm 11.x. Upgrade manually:
+
+```bash
+npm install -g npm@12
+npm --version  # should print 12.x.x
+```
+
 ### Start dev server
 ```bash
 npm run dev:core:default   # port 8000

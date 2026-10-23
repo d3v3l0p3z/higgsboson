@@ -107,30 +107,35 @@ npm publish --access public
 
 #### Option B: Staged publish (stage-only token, requires npm 12+)
 
-If your token is stage-only and you have npm 12+, use `npm stage publish` instead:
+If your token is stage-only, stage each package first. **Note:** `npm stage publish/promote` requires npm 12+. Node 24 LTS ships with npm 11.x — upgrade manually:
 
 ```bash
-# Publish core first (stages the version)
-cd packages/core
-npm stage publish --access public
-
-# Then themes
-cd ../themes/captain-america
-npm stage publish --access public
-
-cd ../caramel
-npm stage publish --access public
+npm install -g npm@12
+npm --version  # should print 12.x.x
 ```
 
-`@higgsboson/utils` is **internal-only** and **not published** to npm.
+Then stage:
+
+```bash
+# Stage all packages
+npm run publish:stage:all
+```
 
 After staging, a maintainer with 2FA enabled must promote each staged version:
 
 ```bash
-npm stage promote @higgsboson/core@<version> --from=stage --to=latest
-npm stage promote @higgsboson/theme-captain-america@<version> --from=stage --to=latest
-npm stage promote @higgsboson/theme-caramel@<version> --from=stage --to=latest
+# Promote all packages
+npm run publish:promote:all
 ```
+
+Or promote individual packages:
+
+```bash
+npm run publish:promote:core
+npm run publish:promote:captain-america
+npm run publish:promote:caramel
+```
+
 
 **To get a full publish token:** Go to https://www.npmjs.com/settings/TOKENS, create a new "Automation" token with **Read + Publish** access (not "Read + Publish (stage-only)"), and enable 2FA on your npm account.
 

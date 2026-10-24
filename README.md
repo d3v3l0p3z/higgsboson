@@ -846,7 +846,7 @@ Higgsboson
 #### Usage
 
 - `pre-commit`: runs [commitlint](https://commitlint.js.org/) so every commit message follows [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, ...). See `.skills/git-commit-conventional.md`.
-- `pre-push`: runs the workspace lint rules before your changes leave the machine.
+- `pre-push`: runs the workspace lint rules **and the core visual regression suite** (`npm run test:visual`) before your changes leave the machine. If a visual diff is intentional, re-record the baselines with `npm run test:visual:update` and commit them.
 
 If you have permissions, when you run `git push` or `git push origin {BRANCH}` the pre-push hook runs automatically.
 

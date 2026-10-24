@@ -62,7 +62,7 @@
     "lint:theme:captain-america": "npm run lint --workspace packages/themes/captain-america",
     "lint:theme:caramel": "npm run lint --workspace packages/themes/caramel",
     "prepare": "husky",
-    "pre-push": "npm run lint --workspaces",
+    "pre-push": "npm run lint --workspaces && npm run test:visual",
     "test:utils": "npm run test --workspace packages/utils",
     "test:visual": "npm run test:visual --workspace packages/core",
     "test:visual:update": "npm run test:visual --workspace packages/core -- --update-snapshots",

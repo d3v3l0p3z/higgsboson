@@ -165,6 +165,7 @@ Notes:
 
 - `npm run lint` (all workspaces) currently passes clean.
 - commitlint (`commitlint.config.cjs`) enforces Conventional Commits via the husky `pre-commit` hook (`.husky/pre-commit` → `npx commitlint --edit`).
+- The husky `pre-push` hook runs lint on all workspaces **and** the core visual regression suite (`npm run test:visual`) — a visual change requires updated baselines to push.
 - Allowed commit types: `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`.
 - Allowed scopes: `core`, `utils`, `theme-captain-america`, `theme-caramel`, `readme`, `deps`, `ci`.
 - Header/body/footer max 100 chars.

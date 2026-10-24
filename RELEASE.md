@@ -78,7 +78,7 @@ npm run release:major
 git push origin main --follow-tags
 ```
 
-The `pre-push` hook runs lint on all workspaces before allowing the push.
+The `pre-push` hook runs lint on all workspaces and the core visual regression suite before allowing the push.
 
 ### 5. Publish to npm
 

@@ -716,19 +716,64 @@ For the full release process, changelog convention, and pre-release checklist, s
 
 ##### Component model
 
-The component model is a javascript Object (`{ title, cases, nodes }`) that declaratively describes the structure of a component running in our dev playground. [The renderer](./packages/utils/src/render.mjs) turns it into the component page DOM, one example per case.
+The component model is a javascript Object (`{ title, cases, nodes }`) that declaratively describes the structure of a component running in our dev playground. [The renderer](./packages/utils/src/render.mjs) turns it into the component page DOM, one example per case. You can author your own model for any markup you want to showcase — the rules below are everything the renderer expects.
 
 > [!TIP]
 > Take a look at the [componentA-model.mjs](#componenta-modelmjs) file section to see where you should place it.
 
-- `title`: The component name, used as the page heading.
-- `cases`: An array of use case labels. The page renders **one example per case**, and each case gets its own entry for the per-node `classNames` / `labels` arrays below.
-- `nodes`: The node tree. Each node has:
-  - `tag`: The html tag.
-  - `classNames`: An array with **one value per case** (`null` to skip that case for this node).
-  - `labels`: An array with **one text value per case** (`null` for no text, `[""]` for an empty label).
-  - `next`: Child nodes array, or `null`.
-  - `prev`: The id of the parent node when it cannot be inferred (used to chain table rows into a `tbody`).
+###### Model shape
+
+```javascript
+{
+  title: "Box",        // string: component name, becomes the page h1
+  cases: ["Box", ...], // string[] (optional): one label per rendered example, becomes the h2 headings
+  nodes: [ /* node tree */ ],
+}
+```
+
+- `render(model)` also accepts a **bare `nodes` array** instead of the full object.
+- `cases` is data for the headings only: `render()` ignores it, `addMarkupHeaders()` consumes it.
+- `render(model)` mounts into `#hggs-root` (or the id passed as second argument) and throws `"No descriptions found to render the model"` if the model produces no nodes.
+
+###### Node fields
+
+Every entry of `nodes` (recursively through `next`) is an object with these fields:
+
+| Field | Type | Rules |
+|-------|------|-------|
+| `tag` | `string` | The html tag. **Defaults to `div`** when omitted. |
+| `classNames` | `string \| string[]` | CSS classes. A plain string is coerced to `[value]`. An array means **one entry per rendered example** (see the rules below). `null` = no classes. |
+| `labels` | `string \| string[]` | Text content (`textContent`). A plain string is coerced to `[value]`. `null` = no text, `[""]` = an element with empty text. |
+| `next` | `node[] \| null` | Children. Each child automatically gets `prev` = its parent's description id, so nesting is the default parenting mechanism. |
+| `prev` | `string` | Explicit parent description id, only for parents the nesting cannot infer (see rule 5). |
+| `id` | `string` | Sets the DOM `id` attribute on **every copy** generated for this node (e.g. `hggs-dialog-id`, `switch-1`). Without it, the generated description id becomes the DOM id. |
+| `attributes` | `object \| object[]` | Html attributes. An array is merged left to right into one object. Entries with `null`/`undefined` values are skipped. |
+| `command` / `commandfor` | `string` | Shorthands merged into `attributes` (Html Invokers API, used by dialogs and their triggers). |
+
+###### Rendering rules
+
+1. **One example per case.** The page renders one root example per entry of `cases`, and each example's `classNames` / `labels` arrays are indexed by case (`entry[i]` for case `i`). If `cases.length` does not match the example count, the headings fall back to `title` + root modifiers and a warning is logged with `LOGS_WARNINGS_ACTIVE=true`; the mock test also locks the lengths.
+2. **Per-case arrays on root nodes.** A root node's `classNames` array carries one class string per case — that is how a single node produces every variant of a component (see the box example below). `null` renders that example without classes, `labels: null` renders it without text.
+3. **Root multi-class expansion (the "box pattern").** A root node (no `prev`) declared with multiple `classNames` is **replicated once per class entry**: each replica becomes one example, and their ids differ only in the class index segment (`edge-0 --> tag-div --> class-hggs-box-0`, `...-1`, `...-2`, ...).
+4. **Id chains.** Every description id accumulates segments as the node is built: `edge-N --> tag-X --> class-Y-i --> label-z-j`. The final id is what lands in the DOM `id` attribute — unless the node declares its own `id`, which wins for all of its copies.
+5. **Parenting with `prev`.** Children infer their parent from `next` nesting. Use explicit `prev` when several siblings must land inside a parent that is not their declarative ancestor — the canonical case is chaining table rows into the same `tbody`:
+
+   ```javascript
+   // table-model.mjs: every row after the first points at the tbody description id
+   const rowNodes = ROWS.map((row, index) => ({
+     tag: "tr",
+     labels: [""],
+     ...(index > 0 ? { prev: TBODY_ID } : {}), // first row inherits it from `next`
+     next: null,
+   }));
+   ```
+
+   The renderer's `sortDescriptionsForAppend()` guarantees a parent is always appended before its children, so `prev` ids may point forward in the array safely.
+6. **Replication patterns.** `getDescriptionsAddingNextNodes()` special-cases three structures so one declarative node fans out into the N per-case DOM pairs:
+   - **Checkbox pair**: a parent whose `next` is `[input, label]` with a `labels` array of N options renders N sibling inputs+labels, auto-wiring `name="checkbox-i"` and `label.for`.
+   - **Dialog + trigger**: a parent whose `next` is `[dialog, button]` renders N `(dialog, button)` pairs; each dialog id and each trigger `commandfor` get an `-i` suffix so every button targets its own dialog (e.g. `hggs-dialog-id-0`, `hggs-dialog-id-1`).
+   - **Single parent, multiple child classes**: when one child carries N class variants, the parent is replicated per variant and all children attach to their matching copy.
+7. **Sibling order.** Direct children are appended following the parent's `next` array order, so declaration order in the model is DOM order.
 
 See here an example of a component model structure in `javascript`:
 
@@ -759,11 +804,35 @@ export const boxModel = {
 export default boxModel;
 ```
 
+A model with children, attributes and an explicit `id` (dialog excerpt):
+
+```javascript
+// The dialog carries the id; each per-case copy gets a -i suffix (hggs-dialog-id-0, -1, ...)
+{ tag: "dialog", id: "hggs-dialog-id", classNames: ["hggs-dialog hggs-dialog--big"], next: [/* header, section, footer */] },
+
+// Its trigger declares command/commandfor; the renderer suffixed commandfor to match each dialog copy
+{
+  tag: "button",
+  classNames: ["hggs-button hggs-button--primary"],
+  command: "show-modal",           // merged into attributes
+  commandfor: "hggs-dialog-id",    // becomes hggs-dialog-id-0, hggs-dialog-id-1, ...
+  labels: ["Open"],
+  next: null,
+}
+```
+
+###### Authoring your own model
+
+1. Create `<name>-model.mjs` in your component folder exporting the model (see [componentA-model.mjs](#componenta-modelmjs)).
+2. Create the `<name>.html` page that loads it (see [componentA.html](#componentahtml) and the [create-component skill](./.skills/create-component.md) for the full file set).
+3. Generate the golden mock — **never write it by hand**: `npm run mocks:update --workspace packages/utils <name>`.
+4. Verify: `npm run test:utils` (DOM golden tests) and `npm run test:visual` (per-case screenshots; record new baselines with `npm run test:visual:update`).
+
 > [!IMPORTANT]
 > The generated `<name>-mock.html` golden file locks the rendered DOM. After changing a model, regenerate it with `npm run mocks:update --workspace packages/utils <name>` and run `npm run test:utils` — never edit mocks by hand.
 
 > [!NOTE]
-> For the full renderer semantics (sorting, `prev` chains, unique sibling ids), see [`packages/utils/README.md`](./packages/utils/README.md).
+> For the full renderer internals (flow diagram, sorting, copy ids, mock format), see [`packages/utils/README.md`](./packages/utils/README.md).
 
 ##### Run development playground
 

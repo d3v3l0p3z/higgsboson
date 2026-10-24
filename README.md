@@ -24,32 +24,33 @@ Higgsboson is a themeable semantic classless framework to style core native comp
         - [Core folder file structure](#core-folder-file-structure)
         - [Default theme](#default-theme)
           - [assets folder](#assets-folder)
-          - [vars.css](#varscss)
+          - [vars.css](#vars-css)
+          - [index.css](#index-css)
         - [Components](#components)
           - [Components docs](#components-docs)
           - [Component files structure](#component-files-structure)
-          - [componentA.css](#componentacss)
-          - [componentA.html](#componentahtml)
-          - [componentA.md](#componentamd)
-          - [componentA-model.mjs](#componenta-modelmjs)
-          - [componentA-mock.html](#componenta-mockhtml)
+          - [componentA.css](#componenta-css)
+          - [componentA.html](#componenta-html)
+          - [componentA.md](#componenta-md)
+          - [componentA-model.mjs](#componenta-model-mjs)
+          - [componentA-mock.html](#componenta-mock-html)
       - [Themes](#themes)
         - [Theme folder file structure](#theme-folder-file-structure)
           - [assets](#assets)
-          - [components](#components)
-          - [fonts.css](#fontscss)
-          - [resets.css](#resetscss)
-          - [vars.css](#varscss)
-          - [index.css](#indexcss)
-          - [gitignore](#gitignore)
-          - [stylelintignore](#stylelintignore)
-          - [stylelintrc](#stylelintrc)
-          - [bs-config.json](#bs-configjson)
-          - [higgsboson.json](#higgsbosonjson)
-          - [index.html](#indexhtml)
+          - [components](#components-1)
+          - [fonts.css](#fonts-css)
+          - [resets.css](#resets-css)
+          - [vars.css](#vars-css-1)
+          - [index.css](#index-css-1)
+          - [.gitignore](#gitignore)
+          - [.stylelintignore](#stylelintignore)
+          - [.stylelintrc](#stylelintrc)
+          - [bs-config.json](#bs-config-json)
+          - [higgsboson.json](#higgsboson-json)
+          - [index.html](#index-html)
           - [LICENSE](#license)
-          - [package.json](#packagejson)
-          - [postcss.config.js](#postcssconfigjs)
+          - [package.json](#package-json)
+          - [postcss.config.js](#postcss-config-js)
         - [Technical considerations](#technical-considerations)
           - [Complete graph of the ideal higgsboson flow](#complete-graph-of-the-ideal-higgsboson-flow)
         - [Dev a theme](#dev-a-theme)
@@ -59,13 +60,27 @@ Higgsboson is a themeable semantic classless framework to style core native comp
     - [Build](#build)
       - [Plugins that we are using in the build process](#plugins-that-we-are-using-in-the-build-process)
     - [Release](#release)
+      - [Release scripts](#release-scripts)
+      - [Release workflow](#release-workflow)
     - [Development](#development)
+      - [Development Playground](#development-playground)
+        - [Component model](#component-model)
+          - [Model shape](#model-shape)
+          - [Node fields](#node-fields)
+          - [Rendering rules](#rendering-rules)
+          - [Authoring your own model](#authoring-your-own-model)
+        - [Run development playground](#run-development-playground)
     - [Testing](#testing)
+      - [Visual regression](#visual-regression)
     - [Lint](#lint)
     - [Format](#format)
     - [Pre-push](#pre-push)
       - [Usage](#usage)
   - [How to consume](#how-to-consume)
+    - [Install from npm](#install-from-npm)
+    - [Include the CSS in your project](#include-the-css-in-your-project)
+    - [Use the components](#use-the-components)
+    - [Consume in a React (or similar JS) app](#consume-in-a-react-or-similar-js-app)
   - [Tools that could help you to develop in this project](#tools-that-could-help-you-to-develop-in-this-project)
     - [Visual Studio Code IDE](#visual-studio-code-ide)
       - [Visual Studio Code useful Extensions](#visual-studio-code-useful-extensions)
@@ -719,7 +734,7 @@ For the full release process, changelog convention, and pre-release checklist, s
 The component model is a javascript Object (`{ title, cases, nodes }`) that declaratively describes the structure of a component running in our dev playground. [The renderer](./packages/utils/src/render.mjs) turns it into the component page DOM, one example per case. You can author your own model for any markup you want to showcase — the rules below are everything the renderer expects.
 
 > [!TIP]
-> Take a look at the [componentA-model.mjs](#componenta-modelmjs) file section to see where you should place it.
+> Take a look at the [componentA-model.mjs](#componenta-model-mjs) file section to see where you should place it.
 
 ###### Model shape
 
@@ -823,8 +838,8 @@ A model with children, attributes and an explicit `id` (dialog excerpt):
 
 ###### Authoring your own model
 
-1. Create `<name>-model.mjs` in your component folder exporting the model (see [componentA-model.mjs](#componenta-modelmjs)).
-2. Create the `<name>.html` page that loads it (see [componentA.html](#componentahtml) and the [create-component skill](./.skills/create-component.md) for the full file set).
+1. Create `<name>-model.mjs` in your component folder exporting the model (see [componentA-model.mjs](#componenta-model-mjs)).
+2. Create the `<name>.html` page that loads it (see [componentA.html](#componenta-html) and the [create-component skill](./.skills/create-component.md) for the full file set).
 3. Generate the golden mock — **never write it by hand**: `npm run mocks:update --workspace packages/utils <name>`.
 4. Verify: `npm run test:utils` (DOM golden tests) and `npm run test:visual` (per-case screenshots; record new baselines with `npm run test:visual:update`).
 

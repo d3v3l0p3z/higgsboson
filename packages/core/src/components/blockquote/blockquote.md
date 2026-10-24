@@ -1,4 +1,4 @@
-# Box
+# Blockquote
 
 ## Root component class name
 

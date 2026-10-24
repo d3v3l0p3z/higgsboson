@@ -14,7 +14,7 @@
 }
 ```
 
-## Component variables
+## Component variables (table wrapper)
 
 ```
 --table-wrapper-border
@@ -31,7 +31,7 @@
 }
 ```
 
-## Component variables
+## Component variables (table)
 
 ```
 --table-min-width

@@ -88,20 +88,23 @@ Publish each workspace individually. Themes must be published after core (they p
 
 > Stage-only tokens cannot publish new package versions directly. Versions must be staged with `npm stage publish` and then promoted by a maintainer with two-factor authentication (2FA) enabled.
 
-#### Option A: Direct publish (full publish token, npm 10.x)
+#### Option A: Direct publish (full publish token)
+
+Requires npm 12+ (the repo `engines` field demands it):
 
 ```bash
+npm install -g npm@12
+npm --version  # should print 12.x.x
+
 # Publish core first
-cd packages/core
-npm publish --access public
+npm run publish:core
 
 # Then themes
-cd ../themes/captain-america
-npm publish --access public
-
-cd ../caramel
-npm publish --access public
+npm run publish:captain-america
+npm run publish:caramel
 ```
+
+(`publish:*` are thin wrappers around `npm publish --workspace <path>` — you can also `cd` into each package and run `npm publish --access public`.)
 
 `@higgsboson/utils` is **internal-only** and **not published** to npm.
 

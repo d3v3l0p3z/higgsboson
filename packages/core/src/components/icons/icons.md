@@ -1,4 +1,4 @@
-# Buttons
+# Icons
 
 ## Root component class name
 

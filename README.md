@@ -1,13 +1,15 @@
-![[Higgsboson]](images/logo-light.png#gh-light-mode-only)
-![[Higgsboson]](images/logo-dark.png#gh-dark-mode-only)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/logo-dark.png" />
+  <img src="images/logo-light.png" alt="Higgsboson" />
+</picture>
 
 # Higgsboson
 
-Higgsboson is a themeable semantic classeless framework to style core native components.
+Higgsboson is a themeable semantic classless framework to style core native components.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Issues](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcodeberg.org%2Fapi%2Fv1%2Frepos%2Fhiggsboson%2Fhiggsboson%2Fissues%3Fstate%3Dopen%26type%3Dissues&query=%24.length&label=issues&color=brightgreen&style=flat-square)](https://codeberg.org/higgsboson/higgsboson/issues)
-[![Stage - Alpha](https://img.shields.io/badge/Stage-Alpha-f9f504)](https://)
+[![Stage - Alpha](https://img.shields.io/badge/Stage-Alpha-f9f504)](https://codeberg.org/higgsboson/higgsboson)
 ![maintained - yes](https://img.shields.io/badge/maintained-yes-blue)
 
 ## Summary
@@ -20,17 +22,17 @@ Higgsboson is a themeable semantic classeless framework to style core native com
     - [Packages](#packages)
       - [Core](#core)
         - [Core folder file structure](#core-folder-file-structure)
-        - [Default theme.](#default-theme)
+        - [Default theme](#default-theme)
           - [assets folder](#assets-folder)
-          - [default.css](#defaultcss)
-          - [index.css](#indexcss)
+          - [vars.css](#varscss)
         - [Components](#components)
           - [Components docs](#components-docs)
           - [Component files structure](#component-files-structure)
           - [componentA.css](#componentacss)
           - [componentA.html](#componentahtml)
           - [componentA.md](#componentamd)
-          - [componentA.mjs](#componentamjs)
+          - [componentA-model.mjs](#componenta-modelmjs)
+          - [componentA-mock.html](#componenta-mockhtml)
       - [Themes](#themes)
         - [Theme folder file structure](#theme-folder-file-structure)
           - [assets](#assets)
@@ -58,19 +60,20 @@ Higgsboson is a themeable semantic classeless framework to style core native com
       - [Plugins that we are using in the build process](#plugins-that-we-are-using-in-the-build-process)
     - [Release](#release)
     - [Development](#development)
+    - [Testing](#testing)
     - [Lint](#lint)
     - [Format](#format)
     - [Pre-push](#pre-push)
       - [Usage](#usage)
+  - [How to consume](#how-to-consume)
   - [Tools that could help you to develop in this project](#tools-that-could-help-you-to-develop-in-this-project)
     - [Visual Studio Code IDE](#visual-studio-code-ide)
       - [Visual Studio Code useful Extensions](#visual-studio-code-useful-extensions)
-  - [How to consume](#how-to-consume)
 
 ## What is next
 
 Take a look into the active [project board](https://github.com/users/d3v3l0p3z/projects/3/views/2)
-or more deeper view in [issues](https://codeberg.org/higgsboson/higgsboson/issues).
+or a deeper view in [issues](https://codeberg.org/higgsboson/higgsboson/issues).
 
 ## Why Higgsboson?
 
@@ -80,7 +83,7 @@ Now, I know that we have multiple techniques and tools in the ecosystem to solve
 
 - The most standard way possible, use the web.
 - Minimum coupling between internal parts.
-- Oriented to his main responsibility, styling pieces on the screen.
+- Oriented to its main responsibility, styling pieces on the screen.
 - Fully customizable injectable themes.
 - Fast propagation of changes.
 - Easily articulated in a design system.
@@ -108,7 +111,7 @@ Higgsboson
 
 ### Packages
 
-Higssboson has different packages that has their own workspace. Those packages are `core`, `themes` and `utils.`
+Higgsboson has different packages that have their own workspace. Those packages are `core`, `themes` and `utils`.
 
 #### Core
 
@@ -184,13 +187,14 @@ All available core components defined from their selectors, properties and value
 - [Button](/packages/core/src/components/buttons/buttons.md)
 - [Checkbox](/packages/core/src/components/checkbox/checkbox.md)
 - [Dialog](/packages/core/src/components/dialog/dialog.md)
-- [Divider](/packages/core/src/components/dialog/divider.md)
+- [Divider](/packages/core/src/components/divider/divider.md)
 - [Dropdown](/packages/core/src/components/dropdown/dropdown.md)
 - [Field](/packages/core/src/components/field/field.md)
 - [Flex](/packages/core/src/components/flex/flex.md)
+- [Form](/packages/core/src/components/form/form.md)
 - [Grid](/packages/core/src/components/grid/grid.md)
 - [Icon](/packages/core/src/components/icons/icons.md)
-- [Input](/packages/core/src/components/inputs/input.md)
+- [Input](/packages/core/src/components/inputs/inputs.md)
 - [Label](/packages/core/src/components/label/label.md)
 - [Link](/packages/core/src/components/link/link.md)
 - [List](/packages/core/src/components/list/list.md)
@@ -216,7 +220,8 @@ components
         ├─ componentA.css
         ├─ componentA.html
         ├─ componentA.md
-        ├─ componentA.mjs
+        ├─ componentA-mock.html
+         ├─ componentA-model.mjs
 ```
 
 ###### componentA.css
@@ -225,15 +230,19 @@ Selectors, rules, properties and values to this component scoped by selector and
 
 ###### componentA.html
 
-Html markup generated with [underscore](https://underscorejs.org/) + [our custom utils](./packages/utils/src/) + an .mjs module with the component data model.
+Html markup page that loads the component model and renders it with [our custom utils renderer](./packages/utils/src/) into the dev playground.
 
 ###### componentA.md
 
 Complete documentation about **component theme API variables**, **component theme API selectors** and markup component use cases.
 
-###### componentA.mjs
+###### componentA-model.mjs
 
-A javascript module with the data model to render with underscore and our custom utils all our component use cases.
+A javascript module with the declarative data model (`{ title, cases, nodes }`) that [our custom utils renderer](./packages/utils/src/) turns into all the component use cases.
+
+###### componentA-mock.html
+
+The golden file with the expected rendered DOM for the component model. It is **generated** with `npm run mocks:update --workspace packages/utils componentA` — never edit it by hand.
 
 #### Themes
 
@@ -241,7 +250,7 @@ A Higgsboson theme is not more than **a package that contains the theme variable
 
 There are different workspaces with packages with themes examples to review.
 
-Building each of this themes in their owns workspaces you can use Higgsboson with your theme imported on top of Higgsboson core build imported.
+Building each of these themes in their own workspaces you can use Higgsboson with your theme imported on top of Higgsboson core build imported.
 
 > [!NOTE]
 > So take into account that to use a theme you should build the core package and the theme package. If you run the script to run the dev environment to a theme, the script run the core package build and the theme package build separately.
@@ -308,7 +317,7 @@ Folder to allocate different kind of assets as images, svgs, fonts, icons etc.
 
 Theme component interfaces to connect and style different core components from the core package.
 
-All those theme component interfaces **should composed with the same pattern**:
+All those theme component interfaces **should be composed with the same pattern**:
 
 All should be wrapped by a core `component scope selector`
 
@@ -359,7 +368,7 @@ Set here all your css theme resets styles if you needed.
 
 Put here all your theme variables to populate with them your theme component interfaces.
 
-Higgsboson themes just works with standard css custom variables but we would like to calls this entire concept `theme tokens`.
+Higgsboson themes just work with standard css custom variables but we would like to call this entire concept `theme tokens`.
 
 ```css
 :root {
@@ -412,7 +421,7 @@ Set the stylelint rules configuration to the theme workspace package.
 
 Higgsboson use a [lite server](https://github.com/johnpapa/lite-server) to run a dev playground to see how it is going and develop your theme components.
 
-This is the [configuration file](https://github.com/johnpapa/lite-server#custom-configuration) that helps you tu run your dev playground.
+This is the [configuration file](https://github.com/johnpapa/lite-server#custom-configuration) that helps you to run your dev playground.
 
 Usually a `bs-config.json` to a higgsboson theme package should be like:
 
@@ -493,7 +502,7 @@ Set the license to the theme workspace package.
 }
 ```
 
-The theme package should have this scripts into his life cycle:
+The theme package should have these scripts in its life cycle:
 
 ```json
 "scripts": {
@@ -560,7 +569,7 @@ flowchart TB
 To develop an example theme (`captain-america`, `caramel`) you should follow this steps:
 
 1. Run `npm run dev:theme:captain-america` or `npm run dev:theme:caramel` to run the dev playground.
-2. The playground will run the core package with the default theme in `http://localhost:8000` and the theme package that you choice in `http://localhost:8001` in case that you choice `captain-america` or in `http://localhost:8002` in case that you choice `caramel`.
+2. The playground will run the core package with the default theme in `http://localhost:8000` and the theme package you chose in `http://localhost:8001` if you chose `captain-america`, or in `http://localhost:8002` if you chose `caramel`.
 
 > [!TIP]
 > The core package with the default theme is the base to develop a theme. You can see how the core components are styled with the default theme and how you can apply your theme on top.
@@ -595,13 +604,12 @@ At first you should install dependencies after install `nodejs` and `git`.
 
 | Script                       |  Description                                                  |    Output    |
 |------------------------------|---------------------------------------------------------------|--------------|
-| build                        | Build higgsboson in all variantes and themes in prod mode     |  `./packages/core/dist/higgsboson-core.min.css`  |
+| build                        | Build higgsboson in all variants and themes in prod mode     |  `./packages/core/dist/higgsboson-core.min.css`  |
 | build:core:default           | Build higgsboson + default theme version in prod mode         |  `./packages/core/dist/higgsboson-core.min.css`  |
 | build:theme:captain-america  | Build higgsboson + captain-america theme version in prod mode |  `./packages/themes/captain-america/dist/higgsboson-theme-captain-america.min.css`  |
 | build:theme:caramel          | Build higgsboson + caramel theme version in prod mode         |  `./packages/themes/caramel/dist/higgsboson-theme-caramel.min.css`  |
 
-We are using [postcss](https://postcss.org) to transpile the css code into standard
-d css code
+We are using [postcss](https://postcss.org) to transpile the css code into standard css code.
 
 #### Plugins that we are using in the build process
 
@@ -634,7 +642,6 @@ npm install @higgsboson/core @higgsboson/theme-captain-america
 npm install @higgsboson/core @higgsboson/theme-caramel
 ```
 
-**Internal-only:** `@higgsboson/utils` ships renderer and mock infrastructure used by component pages and tests. It is **not published** to npm.
 
 #### Release scripts
 
@@ -659,7 +666,7 @@ npm install @higgsboson/core @higgsboson/theme-caramel
 2. **Build**: `npm run build` (produces `dist/` for each workspace)
 3. **Cut release**: `npm run release:patch` (or `:minor` / `:major`)
    - Bumps versions based on conventional commits (`feat:` → minor, `fix:` → patch)
-   - Generates `CHANGELOG.md`
+   - Generates `CHANGELOG.md` (created on the first release)
    - Creates a git tag (e.g., `v1.0.0`)
 4. **Push**: `git push origin main --follow-tags` (pre-push hook runs lint)
 5. **Publish** (core first, then themes):
@@ -699,19 +706,146 @@ npm install @higgsboson/core @higgsboson/theme-caramel
    npm run publish:promote:caramel
    ```
 
-   `@higgsboson/utils` is **internal-only** and **not published** to npm.
 
 **Token requirements:** Your `NPM_TOKEN` must be a full publish token (`Read + Publish`, not stage-only). Create one at https://www.npmjs.com/settings/TOKENS and enable 2FA on your npm account. See `.npmrc` for the env var format.
 
 For the full release process, changelog convention, and pre-release checklist, see [`RELEASE.md`](./RELEASE.md).
 
----
+### Development
 
-### How to consume
+#### Development Playground
+
+##### Component model
+
+The component model is a javascript Object (`{ title, cases, nodes }`) that declaratively describes the structure of a component running in our dev playground. [The renderer](./packages/utils/src/render.mjs) turns it into the component page DOM, one example per case.
+
+> [!TIP]
+> Take a look at the [componentA-model.mjs](#componenta-modelmjs) file section to see where you should place it.
+
+- `title`: The component name, used as the page heading.
+- `cases`: An array of use case labels. The page renders **one example per case**, and each case gets its own entry for the per-node `classNames` / `labels` arrays below.
+- `nodes`: The node tree. Each node has:
+  - `tag`: The html tag.
+  - `classNames`: An array with **one value per case** (`null` to skip that case for this node).
+  - `labels`: An array with **one text value per case** (`null` for no text, `[""]` for an empty label).
+  - `next`: Child nodes array, or `null`.
+  - `prev`: The id of the parent node when it cannot be inferred (used to chain table rows into a `tbody`).
+
+See here an example of a component model structure in `javascript`:
+
+```javascript
+export const boxModel = {
+  title: "Box",
+  cases: [
+    "Box",
+    "Box rounded",
+    "Box primary",
+    "Box primary rounded",
+  ],
+  nodes: [
+    {
+      tag: "div",
+      classNames: [
+        "hggs-box",
+        "hggs-box hggs-box--rounded",
+        "hggs-box hggs-box--primary",
+        "hggs-box hggs-box--primary hggs-box--rounded",
+      ],
+      labels: null,
+      next: null,
+    },
+  ],
+};
+
+export default boxModel;
+```
+
+> [!IMPORTANT]
+> The generated `<name>-mock.html` golden file locks the rendered DOM. After changing a model, regenerate it with `npm run mocks:update --workspace packages/utils <name>` and run `npm run test:utils` — never edit mocks by hand.
+
+> [!NOTE]
+> For the full renderer semantics (sorting, `prev` chains, unique sibling ids), see [`packages/utils/README.md`](./packages/utils/README.md).
+
+##### Run development playground
+
+For development purposes, run one of these scripts:
+
+| Script                      |  Description                                                                        |   Output             |  Port  |
+|-----------------------------|-------------------------------------------------------------------------------------|----------------------|---------|
+| dev                         | Build higgsboson in all variants and themes in dev mode running the dev playground | All of the following | 8000, 8001, 8002 |
+| dev:core:default            | Build higgsboson + default theme in dev mode running the dev playground             | `./packages/core/dist/higgsboson-core.css` | 8000 |
+| dev:theme:captain-america   | Build higgsboson + captain-america theme in dev mode running the dev playground     | `./packages/themes/captain-america/dist/higgsboson-theme-captain-america.css` | 8000, 8001 |
+| dev:theme:caramel           | Build higgsboson + caramel theme in dev mode running the dev playground         | `./packages/themes/caramel/dist/higgsboson-theme-caramel.css` | 8000, 8002 |
+
+### Testing
+
+The utils package ships the renderer and a golden-file test suite that locks every component page DOM.
+
+| Script | Description |
+|--------|-------------|
+| `test:utils` | Run all utils tests (renderer, markup headers and component mocks) |
+| `test:watch:utils` | Run the tests in watch mode |
+| `test:coverage:recap:utils` | Run the tests with a coverage recap |
+| `test:coverage:report:utils` | Run the tests and generate an html coverage report |
+| `mocks:update:utils` | Regenerate the component golden mocks (pass component names to limit it) |
+
+Every migrated component must ship the full file set: `<name>.html`, `<name>.css`, `<name>.md`, `<name>-model.mjs` and `<name>-mock.html`. The test suite fails if any file is missing or the rendered DOM drifts from its mock.
+
+> [!NOTE]
+> Regenerate a mock after editing a model with `npm run mocks:update --workspace packages/utils <name>`, then re-run `npm run test:utils`. See [`packages/utils/README.md`](./packages/utils/README.md) for the renderer internals.
+
+### Lint
+
+You can lint your css files with:
+
+| Script                      |  Description                                                                     |
+|-----------------------------|----------------------------------------------------------------------------------|
+| lint                        | Lint higgsboson in all variants and themes packages files                     |
+| lint:core:default           | Lint higgsboson + default theme core package files                               |
+| lint:theme:captain-america  | Lint higgsboson + captain-america theme package files                            |
+| lint:theme:caramel          | Lint higgsboson + caramel theme package files                                    |
+
+### Format
+
+Fix your linted css files with:
+
+| Script                        |  Description                                                                       |
+|-------------------------------|------------------------------------------------------------------------------------|
+| format                        | Format higgsboson in all variants and themes packages files                     |
+| format:core:default           | Format higgsboson + default theme core package files                               |
+| format:theme:captain-america  | Format higgsboson + captain-america theme package files                            |
+| format:theme:caramel          | Format higgsboson + caramel theme package files                                    |
+
+### Pre-push
+
+**After running `npm i`, the `prepare` script declared in `package.json` configures the husky hooks for you** so lint and commit policies run automatically before you push or commit.
+
+```text
+Higgsboson
+ ├─ .husky/
+ |    ├─ _/
+ |    |  ├─ .gitignore
+ |    |  ├─ husky.sh
+ |    |
+ |    ├─ pre-commit
+ |    ├─ pre-push
+ |
+ |
+    ...
+```
+
+#### Usage
+
+- `pre-commit`: runs [commitlint](https://commitlint.js.org/) so every commit message follows [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, ...). See `.skills/git-commit-conventional.md`.
+- `pre-push`: runs the workspace lint rules before your changes leave the machine.
+
+If you have permissions, when you run `git push` or `git push origin {BRANCH}` the pre-push hook runs automatically.
+
+## How to consume
 
 Higgsboson is published as scoped npm packages. Consumers install only what they need — the core CSS classes plus optionally a theme.
 
-#### Install from npm
+### Install from npm
 
 ```bash
 # Core only (base styles, no theme)
@@ -724,7 +858,7 @@ npm install @higgsboson/core @higgsboson/theme-captain-america
 npm install @higgsboson/core @higgsboson/theme-caramel
 ```
 
-#### Include the CSS in your project
+### Include the CSS in your project
 
 The built CSS files are published to npm's `dist/` folder. You have three clean ways to include them — **never reference `node_modules/` directly in HTML**:
 
@@ -761,7 +895,7 @@ cp node_modules/@higgsboson/theme-captain-america/dist/higgsboson-theme-captain-
 
 The order matters: **core first, then theme on top**.
 
-#### Use the components
+### Use the components
 
 Once the CSS is loaded, use the component classes in your HTML:
 
@@ -778,7 +912,7 @@ Once the CSS is loaded, use the component classes in your HTML:
 
 See the [component documentation](#components-docs) for all available classes and modifiers.
 
-#### Consume in a React (or similar JS) app
+### Consume in a React (or similar JS) app
 
 Higgsboson is **CSS-only** — there are no React components to import. You install the CSS packages and apply the classes in your JSX:
 
@@ -833,111 +967,6 @@ export default function RootLayout({ children }) {
 ```
 
 See the [component documentation](#components-docs) for all available classes and modifiers.
-
-### Development
-
-#### Development Playground
-
-##### Component model
-
-The component model is a javascript Object that describes the structure of a component running in our dev playground. It is used to generate the HTML and CSS for the component.
-
-> [!TIP]
-> Take a look to [component.mjs](#componentamjs) file section to see where you should place it.
-
-This object will describe use cases for the component in terms of CSS classes that will be applied to the component.
-
-See here some example of a component model structure in `javascript`:
-
-```javascript
-const componentModel = {
-  title: 'Box',
-  classes: {
-    structure: {
-      values: ['hggs-box'],
-      next: [
-        {
-          values: ['hggs-box-header'],
-          next: [{
-            values: ['hggs-box-title', 'hggs-h4'],
-            next: null
-          }]
-        },
-        {
-          values: ['hggs-box-body'],
-          next: null
-        }
-      ]
-    },
-    modifiers: {
-      "0": { // Level 0 in the structure
-        values: ['hggs-list--marker'],
-        type: "individual"  // Can be `individual` or `grouped`
-      }
-    }
-  }
-};
-```
-
-> [!IMPORTANT]
-> For the `modifiers` property we can apply them as `individual` or `grouped`.
->
-> 1. If we apply them as `individual`, it means that the engine will render the `structure` for each of the individuals per defined level.
-> 2. If we apply them as `grouped`, it means that the engine will only render the `structure` once applying all `modifiers` once at the specified level.
-
-##### Run development playground
-
-Then to develop purposes we need run one of this scripts:
-
-| Script                      |  Description                                                                        |   Output             |  Port  |
-|-----------------------------|-------------------------------------------------------------------------------------|----------------------|---------|
-| dev                         | Build higgsboson in all variantes and themes in dev mode running the dev playground | All of the following | 8000, 8001, 8002 |
-| dev:core:default            | Build higgsboson + default theme in dev mode running the dev playground             | `./packages/core/dist/higgsboson-core.css` | 8000 |
-| dev:theme:captain-america   | Build higgsboson + captain-america theme in dev mode running the dev playground     | `./packages/themes/captain-america/dist/higgsboson-theme-captain-america.css` | 8000, 8001 |
-| dev:theme:caramel           | Build higgsboson + captain-america theme in dev mode running the dev playground     | `./packages/themes/caramel/dist/higgsboson-theme-caramel.css` | 8000, 8002 |
-
-### Lint
-
-You can lint your css files with:
-
-| Script                      |  Description                                                                     |
-|-----------------------------|----------------------------------------------------------------------------------|
-| lint                        | Lint higgsboson + in all variantes and themes packages files                     |
-| lint:core:default           | Lint higgsboson + default theme core package files                               |
-| lint:theme:captain-america  | Lint higgsboson + captain-america theme package files                            |
-| lint:theme:caramel          | Lint higgsboson + captain-america theme package files                            |
-
-### Format
-
-Fix your linted css files with:
-
-| Script                        |  Description                                                                       |
-|-------------------------------|------------------------------------------------------------------------------------|
-| format                        | Format higgsboson + in all variantes and themes packages files                     |
-| format:core:default           | Format higgsboson + default theme core package files                               |
-| format:theme:captain-america  | Format higgsboson + captain-america theme package files                            |
-| format:theme:caramel          | Format higgsboson + captain-america theme package files                            |
-
-### Pre-push
-
-**After run `npm i` should be trigger automatically the `npm run prepare` script that is declare in `package.json` that will configure husky pre push hook for you** in order to pass policies about lint before push your changes.
-
-```text
-Higgsboson
- ├─ .husky/
- |    ├─ _/
- |    |  ├─ .gitignore
- |    |  ├─ husky.sh
- |    |
- |    ├─ pre-push
- |
- |
-    ...
-```
-
-#### Usage
-
-If you have permissions when you run `git push` or `git push origin {BRANCH}` the pre-push script should be run automatically running the frontend lint rules.
 
 ## Tools that could help you to develop in this project
 

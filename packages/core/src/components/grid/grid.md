@@ -8,6 +8,16 @@
 
 `hggs-cell`
 
+## Theme selector
+
+```css
+.hggs-grid {
+  /*
+  ... put here variables ...
+  */
+}
+```
+
 ## HTML Structure
 
 ### Default

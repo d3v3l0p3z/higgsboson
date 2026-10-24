@@ -36,6 +36,9 @@ All scripts are available at the root:
 | `npm run release:patch` | Bump patch version (bug fixes) |
 | `npm run release:minor` | Bump minor version (new features) |
 | `npm run release:major` | Bump major version (breaking changes) |
+| `npm run publish:core` | Direct publish core |
+| `npm run publish:captain-america` | Direct publish captain-america theme |
+| `npm run publish:caramel` | Direct publish caramel theme |
 | `npm run publish:stage:all` | Stage all packages |
 | `npm run publish:stage:core` | Stage core package |
 | `npm run publish:stage:captain-america` | Stage captain-america theme |
@@ -112,7 +115,7 @@ Always publish **core first**, then themes. Themes declare `@higgsboson/core` as
 3. @higgsboson/theme-caramel
 ```
 
-**`@higgsboson/utils` is internal-only — never published.**
+**`@higgsboson/utils` is internal-only — never published** (enforced by `"private": true` in its `package.json`).
 
 ## Consumer Usage
 

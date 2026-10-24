@@ -1,13 +1,14 @@
 {
   "name": "higgsboson",
   "version": "0.1.0",
+  "private": true,
   "license": "gpl-3.0",
   "author": {
     "name": "Javier Lopez de Ancos",
     "email": "javierlopezdeancos@outlook.com",
     "url": "https://javierlopezdeancos.dev/"
   },
-  "description": "Semantic classeless framework to style native components.",
+  "description": "Semantic classless framework to style native components.",
   "homepage": "https://higgsboson.org/",
   "repository": {
     "type": "git",
@@ -60,6 +61,7 @@
     "lint:core:default": "npm run lint --workspace packages/core",
     "lint:theme:captain-america": "npm run lint --workspace packages/themes/captain-america",
     "lint:theme:caramel": "npm run lint --workspace packages/themes/caramel",
+    "prepare": "husky",
     "pre-push": "npm run lint --workspaces",
     "test:utils": "npm run test --workspace packages/utils",
     "test:coverage:recap:utils": "npm run test:coverage:recap --workspace packages/utils",
@@ -69,6 +71,9 @@
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
+    "publish:core": "npm publish --workspace packages/core",
+    "publish:captain-america": "npm publish --workspace packages/themes/captain-america",
+    "publish:caramel": "npm publish --workspace packages/themes/caramel",
     "publish:stage:core": "npm run publish:stage --workspace packages/core",
     "publish:stage:captain-america": "npm run publish:stage --workspace packages/themes/captain-america",
     "publish:stage:caramel": "npm run publish:stage --workspace packages/themes/caramel",

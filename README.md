@@ -778,7 +778,7 @@ For development purposes, run one of these scripts:
 
 ### Testing
 
-The utils package ships the renderer and a golden-file test suite that locks every component page DOM.
+The utils package ships the renderer and a golden-file test suite that locks every component page DOM. The core package additionally has **visual regression tests** that screenshot every component case with the default theme.
 
 | Script | Description |
 |--------|-------------|
@@ -787,11 +787,21 @@ The utils package ships the renderer and a golden-file test suite that locks eve
 | `test:coverage:recap:utils` | Run the tests with a coverage recap |
 | `test:coverage:report:utils` | Run the tests and generate an html coverage report |
 | `mocks:update:utils` | Regenerate the component golden mocks (pass component names to limit it) |
+| `test:visual` | Run the visual regression tests (Playwright, one screenshot per component case) |
+| `test:visual:update` | Re-record the visual baselines after an intentional visual change |
 
 Every migrated component must ship the full file set: `<name>.html`, `<name>.css`, `<name>.md`, `<name>-model.mjs` and `<name>-mock.html`. The test suite fails if any file is missing or the rendered DOM drifts from its mock.
 
+#### Visual regression
+
+- Lives in `packages/core/visual-tests/` (Playwright config + spec). It serves the core playground on `:8000`, visits every page listed in `higgsboson.json` and screenshots each rendered case (the example following every case `h2`) with the default theme.
+- Baselines live in `packages/core/visual-tests/__screenshots__/` and are committed. After an **intentional** visual change, re-record them with `npm run test:visual:update` and commit the diff.
+- First run on a new machine: `npx playwright install chromium`.
+- Invisible states (e.g. a closed `<dialog>`) are skipped with an annotation; console errors on a page fail its test.
+- Baselines are recorded on macOS at 1280×900 @1x — expect cross-OS font rendering diffs; re-record on the platform you test from.
+
 > [!NOTE]
-> Regenerate a mock after editing a model with `npm run mocks:update --workspace packages/utils <name>`, then re-run `npm run test:utils`. See [`packages/utils/README.md`](./packages/utils/README.md) for the renderer internals.
+> Regenerate a mock after editing a model with `npm run mocks:update --workspace packages/utils <name>`, then re-run `npm run test:utils` and `npm run test:visual`. See [`packages/utils/README.md`](./packages/utils/README.md) for the renderer internals.
 
 ### Lint
 

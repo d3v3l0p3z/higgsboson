@@ -169,6 +169,10 @@ npm run mocks:update --workspace packages/utils <name>
 # verify golden tests + file-set enforcement
 npm run test:utils
 
+# record the visual baselines for the new cases and verify
+npm run test:visual:update
+npm run test:visual
+
 # lint and format
 npm run lint
 npx prettier --write packages/core/src/components/<name>/
@@ -182,4 +186,5 @@ npx prettier --write packages/core/src/components/<name>/
 - [ ] Entry added to all 3 `higgsboson.json` manifests
 - [ ] Theme stubs + imports added in both themes
 - [ ] Mock generated (not hand-written), `npm run test:utils` passes (105 + new tests)
+- [ ] Visual baselines recorded with `npm run test:visual:update` and committed
 - [ ] `npm run lint` clean, prettier applied

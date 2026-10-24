@@ -119,6 +119,8 @@ Rules:
 ### Commands
 ```bash
 npm run test:utils          # runs all utils tests (105/105 passing)
+npm run test:visual         # visual regression: every component case vs committed baselines (Playwright)
+npm run test:visual:update  # re-record visual baselines after an intentional visual change
 npm run mocks:update --workspace packages/utils <names>   # regenerate mocks
 npm run dev:core:default    # dev server on port 8000
 ```
@@ -127,6 +129,7 @@ npm run dev:core:default    # dev server on port 8000
 1. **mocks.test.mjs** — renders every model, diffs against its `<name>-mock.html` (golden); also enforces the component file set
 2. **render.test.mjs** — unit tests for renderer internals (getDescriptions, kebab-case IDs, etc.)
 3. **addMarkupHeaders.test.mjs** — tests h1/h2 injection, case labels, rebuild behavior
+4. **Visual regression** (`packages/core/visual-tests/`, Playwright) — serves the core playground, visits every page from `higgsboson.json` and screenshots each rendered case with the default theme. Baselines in `packages/core/visual-tests/__screenshots__/` are committed. One-time setup: `npx playwright install chromium`. Invisible states (closed `<dialog>`) are skipped; console errors fail the test. Baselines are macOS @1280×900@1x — re-record per platform if needed.
 
 ### Regenerating mocks
 ```bash
@@ -175,7 +178,8 @@ Notes:
 2. Create `<name>.html` using the template above
 3. Run `npm run mocks:update --workspace packages/utils <name>` to generate `<name>-mock.html`
 4. Run `npm run test:utils` to verify
-5. Optionally run `npx prettier --write` on the component folder
+5. Run `npm run test:visual:update` to record the new visual baselines, then `npm run test:visual` to confirm
+6. Optionally run `npx prettier --write` on the component folder
 
 ### Check latest LTS Node version
 ```bash
@@ -248,6 +252,8 @@ See `RELEASE.md` for the full release and npm publish workflow.
 | Task | Command |
 |------|---------|
 | Run all tests | `npm run test:utils` |
+| Run visual regression | `npm run test:visual` |
+| Update visual baselines | `npm run test:visual:update` |
 | Regenerate mocks | `npm run mocks:update --workspace packages/utils <name>` |
 | Dev server | `npm run dev:core:default` |
 | Lint all | `npm run lint` |

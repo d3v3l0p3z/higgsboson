@@ -4,6 +4,9 @@ node_modules
 !index.html
 dist
 *.exe.*
+# Playwright
+test-results
+playwright-report
 # Jetbrains
 .idea
 

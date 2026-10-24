@@ -46,11 +46,13 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production npx postcss ./$npm_package_config_input_directory_sources_name/index.css --config ./postcss.config.js --output ./$npm_package_config_output_directory_name/$npm_package_config_output_filename.min.css --verbose",
+    "build:dev": "npx postcss ./$npm_package_config_input_directory_sources_name/index.css --config ./postcss.config.js --output ./$npm_package_config_output_directory_name/$npm_package_config_output_filename.css --verbose",
     "build:watch": "npx postcss ./$npm_package_config_input_directory_sources_name/index.css --config ./postcss.config.js --output ./$npm_package_config_output_directory_name/$npm_package_config_output_filename.css --verbose --watch",
     "format": "npx stylelint --fix \"$npm_package_config_input_directory_sources_name/**/*.css\"",
     "lint": "npx stylelint \"$npm_package_config_input_directory_sources_name/**/*.css\"",
     "server:start": "lite-server",
     "dev": "concurrently \"npm run build:watch\" \"npm run server:start\"",
+    "test:visual": "playwright test",
     "publish:stage": "npm stage publish --access public",
     "publish:promote": "npm stage promote @higgsboson/core@$npm_package_version --from=stage --to=latest"
   }

@@ -41,7 +41,7 @@
     "README.md"
   ],
   "peerDependencies": {
-    "@higgsboson/core": "^0.1.0"
+    "@higgsboson/core": "^0.2.0"
   },
   "peerDependenciesMeta": {
     "@higgsboson/core": {

@@ -202,6 +202,9 @@ npm run dev:core:default   # port 8000
 - `.skills/upgrade-node-version.md` — instructions for upgrading Node to latest LTS
 - `.skills/publish-higgsboson-packages.md` — npm publish workflows (direct + staged), publish order and checklist
 - `.skills/git-commit-conventional.md` — Conventional Commits rules enforced by commitlint
+- `.skills/name-css-token.md` — naming conventions for core, component and theme tokens (CSS custom properties)
+- `.skills/create-component.md` — how to add a new core component (full file set, menus, mocks)
+- `.skills/create-theme.md` — how to add a new theme package (skeleton, tokens, root wiring)
 
 ---
 

@@ -72,8 +72,7 @@ Higgsboson is a themeable semantic classless framework to style core native comp
 
 ## What is next
 
-Take a look into the active [project board](https://github.com/users/d3v3l0p3z/projects/3/views/2)
-or a deeper view in [issues](https://codeberg.org/higgsboson/higgsboson/issues).
+Take a look at the active [project board](https://github.com/users/d3v3l0p3z/projects/3/views/2) (GitHub) or dive deeper into the [issues](https://codeberg.org/higgsboson/higgsboson/issues) (Codeberg).
 
 ## Why Higgsboson?
 

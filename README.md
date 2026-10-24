@@ -220,7 +220,7 @@ components
         ├─ componentA.html
         ├─ componentA.md
         ├─ componentA-mock.html
-         ├─ componentA-model.mjs
+        ├─ componentA-model.mjs
 ```
 
 ###### componentA.css
